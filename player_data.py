@@ -21,7 +21,7 @@ def player_data(name):
     for tup in games_played:
         games.add(tup[0])
 
-    results = {}
+    results = {'Player':name}
     for game in games_played:
         get_coins = "SELECT coins,placement FROM game_data WHERE player_id=%s AND game=%s"
         mycursor.execute(get_coins, [player_id, game[0]])
