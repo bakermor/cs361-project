@@ -1,26 +1,12 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, render_template
 
 app = Flask(__name__)
 
 # home page
-@app.route("/")
-def home():
-    return "Hello! main page <h1>HELLO<h1>"
-
-# user page
 @app.route("/<name>")
-def user(name):
-    return f"Hello {name}!"
-
-# redirect user url_for("name of function")
-@app.route("/admin")
-def admin():
-    return redirect(url_for("home"))
-
-# redirect to specific url
-@app.route("/admin")
-def admin():
-    return redirect(url_for("user", name="Admin!"))
+def home(name):
+    l1 = ["tim", "joe", "bill"]
+    return render_template("example.html", content=name, r=2, list1=l1)
 
 if __name__ == "__main__":
     app.run()
