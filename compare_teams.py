@@ -2,6 +2,7 @@ from player_data import player_data
 
 def compare_teams(teams_list):
     """teams_list = [ { Team Name: Name, Players: [ P1, P2, P3, P4 ] } ]"""
+    # TODO: add Players key w/ list of tuples containing player name and id
     result = []
     for team in teams_list:
         team_results = {'Team': team['Team Name']}

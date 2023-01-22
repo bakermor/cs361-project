@@ -25,7 +25,7 @@ def player_data(name):
         games.add(tup[0])
 
     # TODO: order results alphabetically with "Player" at beginning and "Overall" at the end
-    results = {'Player':name}
+    results = {'Player':(name,player_id)}
     for game in games_played:
         get_coins = "SELECT coins,placement FROM game_data WHERE player_id=%s AND game=%s"
         mycursor.execute(get_coins, [player_id, game[0]])

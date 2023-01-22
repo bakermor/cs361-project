@@ -32,11 +32,17 @@ def player():
 def compare_p():
     # Process form data
     if request.method == "POST":
-        pass
+        req_players = request.form.getlist('pname')
+        content = compare_players(req_players)
+        # TODO: redirect to page of valid player names if invalid
+        if content[0] == 'invalid':
+            pass
+        content['Type'] = 'players'
+        return redirect(url_for("display", content=json.dumps(content)))
 
     # Load initial webpage
     else:
-        return render_template("ComparePlayers.html")
+        return render_template("ComparePlayers.html", count=2)
 
 # Compare Teams
 @app.route("/compare-teams", methods=["POST","GET"])
@@ -60,6 +66,11 @@ def event_sim():
     else:
         return render_template("EventSim.html")
 
+# Display Valid Players
+@app.route("/valid")
+def valid_players():
+    return render_template("ValidPlayers.html")
+
 # Display Data
 @app.route("/display/<content>")
 def display(content):
@@ -73,7 +84,11 @@ def display(content):
                 game = [key, int(content[key][1]), int(content[key][0])]
                 data.append(game)
         print(data)
-        return render_template("DisplayPlayerData.html", player=content["Player"], games=data)
+        return render_template("DisplayPlayerData.html", player=content["Player"][0], games=data, p_id="/images/"+str(content["Player"][1])+".png")
+
+    # TODO: Display Compare Player results
+    if content["Type"] == "players":
+        pass
 
 if __name__ == "__main__":
     app.run(debug=True)
