@@ -11,5 +11,17 @@ def home():
 def player():
     return render_template("PlayerData.html")
 
+@app.route("/compare-players")
+def compare_p():
+    return render_template("ComparePlayers.html")
+
+@app.route("/compare-teams")
+def compare_t():
+    return render_template("CompareTeams.html")
+
+@app.route("/event")
+def event_sim():
+    return render_template("EventSim.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
