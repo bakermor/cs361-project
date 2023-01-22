@@ -1,0 +1,73 @@
+{% extends "Base.html" %} {% block title %}Compare Team Page{% endblock %} {%
+block content %}
+
+<script type="text/JavaScript">
+  function createNewTeam() {
+      var newTeam = document.createElement('div');
+      newTeam.innerHTML = '<div> <label for="teamName">Team Name:</label> <select id="teamName" name="teamName"> <option value="red">Red Rabbits</option> <option value="orange">Orange Ocelots</option> <option value="yellow">Yellow Yaks</option> <option value="lime">Lime Llamas</option> <option value="green">Green Geckos</option> <option value="cyan">Cyan Coyotes</option> <option value="aqua">Aqua Axolotls</option> <option value="blue">Blue Bats</option> <option value="purple">Purple Pandas</option> <option value="pink">Pink Parrots</option> </select> <label for="p1">Player 1:</label> <input type="text" id="p1" name="p1" /> <label for="p2">Player 2:</label> <input type="text" id="p2" name="p2" /> <label for="p3">Player 3:</label> <input type="text" id="p3" name="p3" /> <label for="p4">Player 4:</label> <input type="text" id="p4" name="p4" /> </div>'
+      document.getElementById("teamInput").appendChild(newTeam);
+  }
+</script>
+
+<form action="#" method="POST">
+  <div id="teamInput">
+    <div>
+      <label for="teamName">Team Name:</label>
+      <select id="teamName" name="teamName">
+        <option value="red">Red Rabbits</option>
+        <option value="orange">Orange Ocelots</option>
+        <option value="yellow">Yellow Yaks</option>
+        <option value="lime">Lime Llamas</option>
+        <option value="green">Green Geckos</option>
+        <option value="cyan">Cyan Coyotes</option>
+        <option value="aqua">Aqua Axolotls</option>
+        <option value="blue">Blue Bats</option>
+        <option value="purple">Purple Pandas</option>
+        <option value="pink">Pink Parrots</option>
+      </select>
+
+      <label for="p1">Player 1:</label>
+      <input type="text" id="p1" name="p1" required />
+      <label for="p2">Player 2:</label>
+      <input type="text" id="p2" name="p2" required />
+      <label for="p3">Player 3:</label>
+      <input type="text" id="p3" name="p3" required />
+      <label for="p4">Player 4:</label>
+      <input type="text" id="p4" name="p4" required />
+    </div>
+
+    <div>
+      <label for="teamName">Team Name:</label>
+      <select id="teamName" name="teamName">
+        <option value="red">Red Rabbits</option>
+        <option value="orange">Orange Ocelots</option>
+        <option value="yellow">Yellow Yaks</option>
+        <option value="lime">Lime Llamas</option>
+        <option value="green">Green Geckos</option>
+        <option value="cyan">Cyan Coyotes</option>
+        <option value="aqua">Aqua Axolotls</option>
+        <option value="blue">Blue Bats</option>
+        <option value="purple">Purple Pandas</option>
+        <option value="pink">Pink Parrots</option>
+      </select>
+
+      <label for="p1">Player 1:</label>
+      <input type="text" id="p1" name="p1" required />
+      <label for="p2">Player 2:</label>
+      <input type="text" id="p2" name="p2" required />
+      <label for="p3">Player 3:</label>
+      <input type="text" id="p3" name="p3" required />
+      <label for="p4">Player 4:</label>
+      <input type="text" id="p4" name="p4" required />
+    </div>
+  </div>
+
+  <div>
+    <input type="button" value="+" onclick="createNewTeam();" />
+    <span>Add a team</span>
+  </div>
+
+  <input type="submit" value="Submit" />
+</form>
+
+{% endblock %}

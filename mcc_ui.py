@@ -1,27 +1,79 @@
-from flask import Flask, redirect, url_for, render_template
+from flask import Flask, redirect, url_for, render_template, request
+import json
+from compare_players import *
+from compare_teams import *
 
 app = Flask(__name__)
 
-# home page
+# Home Page
 @app.route("/")
 def home():
     return render_template("HomePage.html")
 
-@app.route("/player-data")
+# Player Data
+@app.route("/player-data", methods=["POST","GET"])
 def player():
-    return render_template("PlayerData.html")
+    # Process form data
+    if request.method == "POST":
+        req_player = request.form["pname"]
+        content = player_data(req_player)
+        # TODO: redirect to page of valid player names if invalid
+        if content == 'invalid':
+            pass
+        content['Type'] = 'player'
+        return redirect(url_for("display", content=json.dumps(content)))
 
-@app.route("/compare-players")
+    # Load initial webpage
+    else:
+        return render_template("PlayerData.html")
+
+# Compare Players
+@app.route("/compare-players", methods=["POST","GET"])
 def compare_p():
-    return render_template("ComparePlayers.html")
+    # Process form data
+    if request.method == "POST":
+        pass
 
-@app.route("/compare-teams")
+    # Load initial webpage
+    else:
+        return render_template("ComparePlayers.html")
+
+# Compare Teams
+@app.route("/compare-teams", methods=["POST","GET"])
 def compare_t():
-    return render_template("CompareTeams.html")
+    # Process form data
+    if request.method == "POST":
+        pass
 
-@app.route("/event")
+    # Load initial webpage
+    else:
+        return render_template("CompareTeams.html")
+
+# Simulate Event
+@app.route("/event", methods=["POST","GET"])
 def event_sim():
-    return render_template("EventSim.html")
+    # Process form data
+    if request.method == "POST":
+        pass
+
+    # Load initial webpage
+    else:
+        return render_template("EventSim.html")
+
+# Display Data
+@app.route("/display/<content>")
+def display(content):
+    content = json.loads(content)
+
+    # Display Player Data results
+    if content["Type"] == "player":
+        data = []
+        for key in content:
+            if key != "Type" and key != "Player":
+                game = [key, int(content[key][1]), int(content[key][0])]
+                data.append(game)
+        print(data)
+        return render_template("DisplayPlayerData.html", player=content["Player"], games=data)
 
 if __name__ == "__main__":
     app.run(debug=True)

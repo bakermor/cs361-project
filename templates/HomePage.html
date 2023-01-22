@@ -1,0 +1,31 @@
+{% extends "Base.html" %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+
+<div>
+  <p>
+    <form action="/player-data" method="GET">
+      <input type="submit" value="See Player" />
+      <span>Desc. Service</span>
+    </form>
+  </p>
+  <p>
+    <h2>Compare</h2>  
+    <form action="/compare-players" method="GET">
+      <input type="submit" value="Players" />
+      <span>Desc. Service</span>
+    </form>
+    <form action="/compare-teams" method="GET">
+      <input type="submit" value="Teams" />
+      <span>Desc. Service</span>
+    </form>
+  </p>
+  <p>
+    <form action="/event" method="GET">
+      <input type="submit" value="Run Event" />
+      <span>Desc. Service</span>
+    </form>
+  </p>
+</div>
+
+{% endblock %}

@@ -12,7 +12,10 @@ def player_data(name):
 
     get_id = "SELECT player_id FROM players WHERE name=%s"
     mycursor.execute(get_id, (name,))
-    player_id = mycursor.fetchone()[0]
+    player = mycursor.fetchone()
+    if player is None:
+        return "invalid"
+    player_id = player[0]
 
     get_games = "SELECT game FROM game_data WHERE player_id=%s"
     mycursor.execute(get_games, (player_id,))
@@ -21,6 +24,7 @@ def player_data(name):
     for tup in games_played:
         games.add(tup[0])
 
+    # TODO: order results alphabetically with "Player" at beginning and "Overall" at the end
     results = {'Player':name}
     for game in games_played:
         get_coins = "SELECT coins,placement FROM game_data WHERE player_id=%s AND game=%s"

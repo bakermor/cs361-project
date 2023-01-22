@@ -1,0 +1,15 @@
+{% extends "Base.html" %} {% block title %}Player Data Page{% endblock %} {%
+block content %}
+
+<form action="/player-data" method="POST">
+  <label for="pname">Enter Player Name:</label><br />
+  {% if player == null %}
+  <input type="text" id="pname" name="pname" /><br />
+  {% else %}
+  <input type="text" id="pname" name="pname" value="{{player}}" /><br />
+  {% endif %}
+
+  <input type="submit" value="Submit" />
+</form>
+
+{% block display %} {% endblock %} {% endblock %}

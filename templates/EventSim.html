@@ -1,0 +1,93 @@
+{% extends "Base.html" %} {% block title %}Simulate Event Page{% endblock %} {%
+block content %}
+
+<form action="#" method="POST">
+  <div>
+    <span>Games:</span>
+    {% for i in range(1,9) %}
+    <input type="text" id="game{{i}}" name="game" placeholder="Game {{i}}" required />
+    {% endfor %}
+  </div>
+  <div>
+    <div>
+      <header>Red Rabbits</header>
+      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
+      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
+      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
+      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
+    </div>
+    <div>
+      <header>Orange Ocelots</header>
+      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
+      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
+      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
+      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
+    </div>
+    <div>
+      <header>Yellow Yaks</header>
+      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
+      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
+      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
+      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
+    </div>
+  </div>
+  <div>
+    <div>
+      <header>Lime Llamas</header>
+      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
+      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
+      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
+      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
+    </div>
+    <div>
+      <header>Green Geckos</header>
+      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
+      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
+      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
+      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
+    </div>
+    <div>
+      <header>Cyan Coyotes</header>
+      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
+      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
+      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
+      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
+    </div>
+  </div>
+  <div>
+    <div>
+      <header>Aqua Axolotls</header>
+      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
+      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
+      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
+      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
+    </div>
+    <div>
+      <header>Blue Bats</header>
+      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
+      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
+      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
+      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
+    </div>
+    <div>
+      <header>Purple Pandas</header>
+      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
+      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
+      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
+      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
+    </div>
+  </div>
+  <div>
+    <div>
+      <header>Pink Parrots</header>
+      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
+      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
+      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
+      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
+    </div>
+
+    <input type="submit" value="Run Event" />
+  </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "PlayerData.html" %} {% block display %}
+
+<div>
+  <table>
+    <h3>{{player}}</h3>
+    <thead>
+      <tr>
+        <th>Game</th>
+        <th>Place</th>
+        <th>Coins</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for game in games %}
+      <tr>
+        {% for item in game %}
+        <td>{{item}}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

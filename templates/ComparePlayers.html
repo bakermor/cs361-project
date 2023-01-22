@@ -1,0 +1,29 @@
+{% extends "Base.html" %} {% block title %}Compare Players Page{% endblock %} {%
+block content %}
+
+<script type="text/JavaScript">
+  function createNewInput() {
+      var newInput = document.createElement('div');
+      newInput.innerHTML = '<label for="pname">Enter Player Name:</label><br /><input type="text" id="pname" name="pname" /><br />';
+      document.getElementById("playerInput").appendChild(newInput);
+  }
+</script>
+
+<form action="#" method="POST">
+  <div id="playerInput">
+    <label for="pname">Enter Player Name:</label><br />
+    <input type="text" id="pname" name="pname" /><br />
+
+    <label for="pname">Enter Player Name:</label><br />
+    <input type="text" id="pname" name="pname" /><br />
+  </div>
+
+  <div>
+    <input type="button" value="+" onclick="createNewInput();" />
+    <span>Add a player</span>
+  </div>
+
+  <input type="submit" value="Submit" />
+</form>
+
+{% endblock %}
