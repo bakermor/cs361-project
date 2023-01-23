@@ -38,10 +38,6 @@ def compare_p():
         print(content)
         if content[0] == 'invalid':
             pass
-        # if "coins" in request.form.keys():
-        #     content.append({"coins": request.form["coins"]})
-        # else:
-        #     content.append({"coins": 0})
 
         return redirect(url_for("display_players", content=json.dumps(content)))
 
@@ -94,18 +90,6 @@ def display_player(content):
 def display_players(content):
     # TODO: Display Compare Player results
     if request.method == "POST":
-    #     print(request.form)
-    #     p_names = json.loads(request.form["p_names"])
-    #     img_paths = json.loads(request.form["imgs"])
-    #     game_lst = json.loads(request.form["games"])
-    #     data = json.loads(request.form["data"])
-    #     coins = request.form["coins"]
-    #     print(data)
-    #     print(p_names)
-    #     print(game_lst)
-    #
-    #     return render_template("DisplayCompareP.html", p_names=p_names, imgs=img_paths, games=game_lst, num_p=len(p_names),
-    #                            data=data, coins=coins)
         pass
 
     else:

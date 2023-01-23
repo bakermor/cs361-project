@@ -38,42 +38,29 @@ block content %}
     {% endfor %}
 </div>
 
-<!-- <form action="/compare-players" method="POST">
-    <select name="coins" value={{coins}}>
-        <option value=0>Coins</option>
-        <option value=1>Placements</option>
-    </select>
-    {% for i in range(num_p) %}
-    <input type="hidden" name="pname" value="{{p_names[i]}}"/>
-    {% endfor %}
-    <input type="submit" value="Submit" />
-
-</form> -->
-
 <table>
-    <thead>
-        <tr>
-            <th>Game</th>
-            {% for i in range(num_p) %}
-            <th>Average</th>
-            {% endfor %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for g in games %}
-        <tr>
-            <td>{{g}}</td>
-            {% for i in range(num_p) %}
-            {% if data[p_names[i]][g] != null%}
-            <td>{{data[p_names[i]][g][0]}}</td>
-            {% else %}
-            <td></td>
-            {% endif %}
-            {% endfor %}
-        </tr>
-        {% endfor %}
-
-    </tbody>
+  <thead>
+    <tr>
+      <th>Game</th>
+      {% for i in range(num_p) %}
+      <th>Average</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for g in games %}
+    <tr>
+      <td>{{g}}</td>
+      {% for i in range(num_p) %}
+        {% if data[p_names[i]][g] != null%}
+        <td>{{data[p_names[i]][g][0]}}</td>
+        {% else %}
+        <td></td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 
 {% endblock %}
