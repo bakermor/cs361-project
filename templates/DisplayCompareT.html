@@ -1,0 +1,54 @@
+{% extends "Base.html" %} {% block title %}Compare Players Page{% endblock %} {%
+block content %}
+
+{% for i in range(num_t) %}
+<div>
+  <image
+    src="{{url_for('static', filename=imgs[i][0])}}"
+    title="{{t_names[i]}}"
+    style="width: 80px; height: 80px"
+  />
+  {% for j in range(1,5) %}
+  <image
+    src="{{url_for('static', filename=imgs[i][j])}}"
+    title="{{p_names[4*i+(j-1)]}}"
+    style="width: 30px; height: 30px"
+  />
+  {% endfor %}
+</div>
+{% endfor %}
+
+<table>
+  <thead>
+    <tr>
+      <th>Game</th>
+      {% for i in range(num_t) %}
+      <th>Average</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for g in games %}
+    <tr>
+      <td>{{g}}</td>
+      {% for i in range(num_t) %} {% if data[t_names[i]][g] != null%}
+      <td>{{data[t_names[i]][g][0]}}</td>
+      {% else %}
+      <td></td>
+      {% endif %} {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<form action="/edit-compare" method="POST">
+    {% for i in range(num_t) %}
+    <input type="hidden" name="teamName" value="{{t_names[i]}}" />
+    {% for j in range(1,5) %}
+    <input type="hidden" name="p{{j}}" value="{{p_names[4*i+(j-1)]}}" />
+    {% endfor %}
+    {% endfor %}
+    <input type="submit" value="Edit Teams" />
+</form>
+
+{% endblock %}

@@ -13,8 +13,10 @@ def compare_teams(teams_list):
             team_stats.append(player_data(player))
 
         team_games = set()
+        player_list = []
         for player in team_stats:
             team_games.update(player.keys())
+            player_list.append(player["Player"])
         team_games.remove("Player")
 
         for game in team_games:
@@ -30,6 +32,9 @@ def compare_teams(teams_list):
             avg_place = sum(game_placement) / len(game_placement)
 
             team_results[game] = (avg_coins, avg_place)
+            team_results['Players'] = player_list
 
         result.append(team_results)
     return result
+
+#print(compare_teams([{'Team Name': 'Red Rabbits', 'Players': ['Sapnap', 'sylvee', 'Tubbo', 'Smajor']}, {'Team Name': 'Orange Ocelots', 'Players': ['Dream', 'GeorgeNotFound', 'Quackity', 'KarlJacobs']}]))

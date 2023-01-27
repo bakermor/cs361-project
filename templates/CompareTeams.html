@@ -9,21 +9,22 @@ block content %}
   }
 </script>
 
-<form action="#" method="POST">
+<form action="/compare-teams" method="POST">
   <div id="teamInput">
+    {% for i in range(count) %} {% if teamName == null %}
     <div>
       <label for="teamName">Team Name:</label>
       <select id="teamName" name="teamName">
-        <option value="red">Red Rabbits</option>
-        <option value="orange">Orange Ocelots</option>
-        <option value="yellow">Yellow Yaks</option>
-        <option value="lime">Lime Llamas</option>
-        <option value="green">Green Geckos</option>
-        <option value="cyan">Cyan Coyotes</option>
-        <option value="aqua">Aqua Axolotls</option>
-        <option value="blue">Blue Bats</option>
-        <option value="purple">Purple Pandas</option>
-        <option value="pink">Pink Parrots</option>
+        <option value="Red Rabbits">Red Rabbits</option>
+        <option value="Orange Ocelots">Orange Ocelots</option>
+        <option value="Yellow Yaks">Yellow Yaks</option>
+        <option value="Lime Llamas">Lime Llamas</option>
+        <option value="Green Geckos">Green Geckos</option>
+        <option value="Cyan Coyotes">Cyan Coyotes</option>
+        <option value="Aqua Axolotls">Aqua Axolotls</option>
+        <option value="Blue Bats">Blue Bats</option>
+        <option value="Purple Pandas">Purple Pandas</option>
+        <option value="Pink Parrots">Pink Parrots</option>
       </select>
 
       <label for="p1">Player 1:</label>
@@ -35,31 +36,33 @@ block content %}
       <label for="p4">Player 4:</label>
       <input type="text" id="p4" name="p4" required />
     </div>
-
+    {% else %}
     <div>
       <label for="teamName">Team Name:</label>
-      <select id="teamName" name="teamName">
-        <option value="red">Red Rabbits</option>
-        <option value="orange">Orange Ocelots</option>
-        <option value="yellow">Yellow Yaks</option>
-        <option value="lime">Lime Llamas</option>
-        <option value="green">Green Geckos</option>
-        <option value="cyan">Cyan Coyotes</option>
-        <option value="aqua">Aqua Axolotls</option>
-        <option value="blue">Blue Bats</option>
-        <option value="purple">Purple Pandas</option>
-        <option value="pink">Pink Parrots</option>
+      <select id="teamName" name="teamName" value={{teamName[i]}}>
+        <option value="{{teamName[i]}}" selected hidden>{{teamName[i]}}</option>
+        <option value="Red Rabbits">Red Rabbits</option>
+        <option value="Orange Ocelots">Orange Ocelots</option>
+        <option value="Yellow Yaks">Yellow Yaks</option>
+        <option value="Lime Llamas">Lime Llamas</option>
+        <option value="Green Geckos">Green Geckos</option>
+        <option value="Cyan Coyotes">Cyan Coyotes</option>
+        <option value="Aqua Axolotls">Aqua Axolotls</option>
+        <option value="Blue Bats">Blue Bats</option>
+        <option value="Purple Pandas">Purple Pandas</option>
+        <option value="Pink Parrots">Pink Parrots</option>
       </select>
 
       <label for="p1">Player 1:</label>
-      <input type="text" id="p1" name="p1" required />
+      <input type="text" id="p1" name="p1" value={{p1[i]}} required />
       <label for="p2">Player 2:</label>
-      <input type="text" id="p2" name="p2" required />
+      <input type="text" id="p2" name="p2" value={{p2[i]}} required />
       <label for="p3">Player 3:</label>
-      <input type="text" id="p3" name="p3" required />
+      <input type="text" id="p3" name="p3" value={{p3[i]}} required />
       <label for="p4">Player 4:</label>
-      <input type="text" id="p4" name="p4" required />
+      <input type="text" id="p4" name="p4" value={{p4[i]}} required />
     </div>
+    {% endif %} {% endfor %}
   </div>
 
   <div>
