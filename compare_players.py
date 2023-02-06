@@ -9,3 +9,5 @@ def compare_players(player_list):
                 return 'invalid', player
             result.append(p_data)
     return result
+
+print(compare_players(["KaraCorvus", 'Krinios', 'Ranboo', 'Ponk']))

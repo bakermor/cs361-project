@@ -10,6 +10,9 @@ def compare_teams(teams_list):
         team_stats = []
         players = team["Players"]
         for player in players:
+            data = player_data(player)
+            if data == "invalid":
+                return 'invalid', player
             team_stats.append(player_data(player))
 
         team_games = set()
@@ -27,6 +30,10 @@ def compare_teams(teams_list):
                     game_coins.append(player[game][0])
                     game_placement.append(player[game][1])
                 else:
+                    if game != 'Overall':
+                        game_coins.append(200)
+                    else:
+                        game_coins.append(1500)
                     game_placement.append(20)
             avg_coins = sum(game_coins)
             avg_place = sum(game_placement) / len(game_placement)
@@ -37,4 +44,5 @@ def compare_teams(teams_list):
         result.append(team_results)
     return result
 
-#print(compare_teams([{'Team Name': 'Red Rabbits', 'Players': ['Sapnap', 'sylvee', 'Tubbo', 'Smajor']}, {'Team Name': 'Orange Ocelots', 'Players': ['Dream', 'GeorgeNotFound', 'Quackity', 'KarlJacobs']}]))
+if __name__ == '__main__':
+    print(compare_teams([{'Team Name': 'Red Rabbits', 'Players': ["Sapnap", "Dream", "GeorgeNotFound", "BadBoyHalo"]}, {'Team Name': 'Orange Ocelots', 'Players': ["TommyInnit", "Tubbo", "Ranboo", "WilburSoot"]}]))
