@@ -54,7 +54,7 @@ def main():
     team7 = {'Team Name': 'Aqua Axolotls', 'Players': ['cubfan135', 'PeteZahHutt', 'Ryguy', 'Grian']}
     team8 = {'Team Name': 'Blue Bats', 'Players': ['Punz', 'Smajor', 'vGumiho', 'Eret']}
     team9 = {'Team Name': 'Purple Pandas', 'Players': ['falsesymmetry', 'fruitberries', 'fWhip', 'Renthedog']}
-    team10 = {'Team Name': 'Pink Parrots', 'Players': ['Ranboo', 'KarlJacobs', 'HBomb94', 'KaraCorvus']}
+    team10 = {'Team Name': 'Pink Parrots', 'Players': ['Ranboo', 'CaptainPuffy', 'HBomb94', 'KaraCorvus']}
 
     teams = [team1, team2, team3, team4, team5, team6, team7, team8, team9, team10]
     games = ["Grid Runners", "Parkour Tag", "Hole in the Wall", "Battle Box", "TGTTOSAWAF", "Ace Race", "Survival Games", "Sands of Time"]

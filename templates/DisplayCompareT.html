@@ -38,6 +38,12 @@ block content %}
       {% endif %} {% endfor %}
     </tr>
     {% endfor %}
+    <tr>
+      <td>Overall</td>
+      {% for i in range(num_t) %}
+      <td>{{data[t_names[i]]["Overall"][0]}}</td>
+      {% endfor %}
+    </tr>
   </tbody>
 </table>
 

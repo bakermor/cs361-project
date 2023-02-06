@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for, render_template, request
 import json
 from compare_players import *
-from compare_teams import *
+from run_event import *
 
 app = Flask(__name__)
 
@@ -95,7 +95,20 @@ def edit_p():
 def event_sim():
     # Process form data
     if request.method == "POST":
-        pass
+        game_lst = request.form.getlist('game')
+
+        teams = ["Red Rabbits", "Orange Ocelots", "Yellow Yaks", "Lime Llamas", "Green Geckos", "Cyan Coyotes", "Aqua Axolotls", "Blue Bats", "Purple Pandas", "Pink Parrots"]
+        p1 = request.form.getlist('p1')
+        p2 = request.form.getlist('p2')
+        p3 = request.form.getlist('p3')
+        p4 = request.form.getlist('p4')
+        # teams = [ { Team Name: Name, Players: [ P1, P2, P3, P4 ] } ]
+        team_list = []
+        for i in range(len(teams)):
+            team_list.append({ 'Team Name': teams[i], 'Players': [p1[i], p2[i], p3[i], p4[i]]})
+
+        content = run_event(team_list, game_lst)
+        return redirect(url_for("display_event", content=json.dumps(content)))
 
     # Load initial webpage
     else:
@@ -114,10 +127,11 @@ def display_player(content):
     # Display Player Data results
     data = []
     for key in content:
-        if key != "Player":
+        if key != "Player" and key != "Overall":
             game = [key, int(content[key][1]), int(content[key][0])]
             data.append(game)
-    return render_template("DisplayPlayerData.html", player=content["Player"][0], games=data, p_id="/images/"+str(content["Player"][1])+".png")
+    overall = ["Overall", int(content["Overall"][1]), int(content["Overall"][0])]
+    return render_template("DisplayPlayerData.html", player=content["Player"][0], games=data, p_id="/images/"+str(content["Player"][1])+".png", overall=overall)
 
 @app.route("/display-p/<content>", methods=["POST", "GET"])
 def display_players(content):
@@ -144,6 +158,7 @@ def display_players(content):
                     p_game[key] = (int(p[key][0]), int(p[key][1]))
             data[p["Player"][0]] = p_game
         game_lst.remove("Player")
+        game_lst.remove("Overall")
 
         return render_template("DisplayCompareP.html", p_names=p_names, imgs=img_paths, games=game_lst,
                                num_p=len(p_names), data=data, coins=0)
@@ -186,9 +201,23 @@ def display_teams(content):
             data[t["Team"]] = t_game
         game_lst.remove("Team")
         game_lst.remove("Players")
+        game_lst.remove("Overall")
 
         return render_template("DisplayCompareT.html", t_names=t_names, p_names=p_names, imgs=img_paths, games=game_lst,
                                num_t=len(t_names), data=data, edit=edit)
+
+@app.route("/display-event/<content>")
+def display_event(content):
+    content = json.loads(content)
+    games = content["Games"]
+    teams = {}
+    coins = content["Coins"]
+    overall = content["Overall"]
+    for team in content["Teams"]:
+        p = content["Teams"][team]
+        teams[team] = [p[0][0], p[1][0], p[2][0], p[3][0]]
+
+    return render_template("DisplayEvent.html", games=games, teams=teams, coins=coins, overall=overall)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,0 +1,60 @@
+{% extends "Base.html" %} {% block title %}Display Event Page{% endblock %} {%
+block content %} {% for game in games %}
+<div>
+  <h3>{{game}}</h3>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Team</th>
+        <th>Coins</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in range(10) %}
+      <tr>
+        <td>{{i+1}}</td>
+        <td>{{coins[game][i]['Team']}}</td>
+        <td>{{coins[game][i]['Coin']|int}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endfor %}
+
+<div>
+    <h3>Overall</h3>
+    <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Team</th>
+            <th>Coins</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in range(10) %}
+          <tr>
+            <td>{{i+1}}</td>
+            <td>{{overall[i]['Team']}}</td>
+            <td>{{overall[i]['Coin']|int}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+
+<div>
+  {% for t in teams %}
+  <div>
+    <image
+      src="{{url_for('static', filename='/images/'+ t +'.png')}}"
+      title="{{teams[t]}}"
+      style="width: 80px; height: 80px"
+    />
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

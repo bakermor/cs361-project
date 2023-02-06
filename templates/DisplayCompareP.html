@@ -32,6 +32,8 @@ block content %}
   <input type="submit" value="Submit" />
 </form>
 
+<br \ />
+
 <div>
     {% for i in range(num_p) %}
     <image src="{{url_for('static', filename=imgs[i])}}" title={{p_names[i]}} style="width:80px;height:80px;"/>
@@ -60,6 +62,12 @@ block content %}
       {% endfor %}
     </tr>
     {% endfor %}
+    <tr>
+      <td>Overall</td>
+      {% for i in range(num_p) %}
+        <td>{{data[p_names[i]]["Overall"][0]}}</td>
+      {% endfor %}
+    </tr>
   </tbody>
 </table>
 
