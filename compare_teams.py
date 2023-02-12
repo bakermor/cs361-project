@@ -6,8 +6,10 @@ def compare_teams(teams_list):
     for team in teams_list:
         team_results = {'Team': team['Team Name']}
         team_stats = team_data(team)
-        team_games = get_games(team_stats)
+        if team_stats[0] == 'invalid':
+            return team_stats
 
+        team_games = get_games(team_stats)
         for game in team_games:
             team_results[game] = team_average(game, team_stats)
             team_results['Players'] = get_players(team_stats)
