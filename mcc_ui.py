@@ -8,6 +8,10 @@ app = Flask(__name__)
 TEAMS = ['Red Rabbits', 'Orange Ocelots', 'Yellow Yaks', 'Lime Llamas', 'Green Geckos', 'Cyan Coyotes', 'Aqua Axolotls',
          'Blue Bats', 'Purple Pandas', 'Pink Parrots']
 
+@app.route("/base")
+def base():
+    return render_template("Base.html")
+
 # Home Page
 @app.route("/")
 def home():

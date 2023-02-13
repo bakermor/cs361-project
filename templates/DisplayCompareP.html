@@ -1,6 +1,7 @@
 {% extends "Error.html" %} {% block title %}Compare Players Page{% endblock %} {%
 block body %}
 
+<div style="display: none">
 <script type="text/JavaScript">
   var count = {{num_p}} 
 
@@ -15,6 +16,7 @@ block body %}
   }
 
 </script>
+</div>
 
 <form action="/compare-players" method="POST">
   <div id="playerInput"></div>

@@ -1,18 +1,20 @@
 {% extends "Base.html" %} {% block title %}Compare Players Page{% endblock %} {%
 block content %}
 
-<script type="text/JavaScript">
-  var count = 2
-  function createNewInput() {
-        var newInput = document.createElement('div');
-        newInput.innerHTML = '<label for="pname">Enter Player Name:</label><br /><input type="text" id="pname" name="pname" /><br />';
-        document.getElementById("playerInput").appendChild(newInput);
-        count += 1
-        if (count === 6){
-            document.getElementById("new-input").hidden=true
-        }
-  }
-</script>
+<div style="display: none">
+  <script type="text/JavaScript">
+    var count = 2
+    function createNewInput() {
+          var newInput = document.createElement('div');
+          newInput.innerHTML = '<label for="pname">Enter Player Name:</label><br /><input type="text" id="pname" name="pname" /><br />';
+          document.getElementById("playerInput").appendChild(newInput);
+          count += 1
+          if (count === 6){
+              document.getElementById("new-input").hidden=true
+          }
+    }
+  </script>
+</div>
 
 <form action="/compare-players" method="POST">
   <div id="playerInput">

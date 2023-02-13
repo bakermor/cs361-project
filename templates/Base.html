@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html>
-    <head>
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    {% block style %}
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/base.css')}}"
+    />
+    {% endblock %}
+  </head>
+  <body>
+    <div class="nav-container">
+      <div class="navigation">
 
-        <meta charset="utf-8">
-        <title>{% block title %}{% endblock %}</title>
-
-    </head>
-    <body>
-
-        <div class="navigation">
-            <header>MCC Season 2</header>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</u></li>
-                <li><a href="/player-data">Player Stats</a></li>
-                <li>Compare</li>
-                <li><a href="/compare-players">Players</a></li>
-                <li><a href="/compare-teams">Teams</a></li>
-                <li><a href="/event">Simulate Event</a></li>
-            </ul>
+        <div class="logo">
+          <image src="{{url_for('static', filename='/images/Icon.png')}}" />
         </div>
 
-        <form action="/valid" method="GET">
-            <input type="submit" title="See List of Valid Player Names" value="i" />
-        </form>
-        <br/>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/player-data">Player Stats</a></li>
+          <li><a href="/compare-players">Compare Players</a></li>
+          <li><a href="/compare-teams">Compare Teams</a></li>
+          <li><a href="/event">Simulate Event</a></li>
+        </ul>
+      </div>
+    </div>
 
-        {% block content %}
-        {% endblock %}
+    <div class="b">
+      <form action="/valid" method="GET">
+        <input
+          class="info"
+          type="submit"
+          title="See List of Valid Player Names"
+          value="i"
+        />
+      </form>
+      <br />
 
-    </body>
+      {% block content %} {% endblock %}
+    </div>
+  </body>
 </html>
