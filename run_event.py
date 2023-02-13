@@ -9,7 +9,7 @@ def run_event(teams, game_list):
 
     team_stats = compare_teams(teams)
     if team_stats[0] == 'invalid':
-        return team_stats
+        return {'Error' : team_stats}
 
     result = { 'Games':game_list, 'Teams':{}, 'Coins':{}, 'Overall': {} }
     for t in team_stats:

@@ -1,12 +1,13 @@
-{% extends "Base.html" %} {% block title %}Player Data Page{% endblock %} {%
-block content %}
+{% extends "Error.html" %} {% block title %}Player Data{% endblock %} {% block body %} 
 
 <form action="/player-data" method="POST">
   <label for="pname">Enter Player Name:</label><br />
-  {% if player == null %}
-  <input type="text" id="pname" name="pname" /><br />
-  {% else %}
+  {% if player %}
   <input type="text" id="pname" name="pname" value="{{player}}" /><br />
+  {% elif error %}
+  <input type="text" id="pname" name="pname" value="{{error}}" /><br />
+  {% else %}
+  <input type="text" id="pname" name="pname" /><br />
   {% endif %}
 
   <input type="submit" value="Submit" />

@@ -1,8 +1,8 @@
-{% extends "Base.html" %} {% block title %}Compare Players Page{% endblock %} {%
-block content %}
+{% extends "Error.html" %} {% block title %}Compare Players Page{% endblock %} {%
+block body %}
 
 <script type="text/JavaScript">
-  var count = {{num_p}}
+  var count = {{num_p}} 
 
   function createNewInput() {
         var newInput = document.createElement('div');
@@ -34,6 +34,7 @@ block content %}
 
 <br \ />
 
+{% if not error %}
 <div>
     {% for i in range(num_p) %}
     <image src="{{url_for('static', filename=imgs[i])}}" title={{p_names[i]}} style="width:80px;height:80px;"/>
@@ -70,5 +71,6 @@ block content %}
     </tr>
   </tbody>
 </table>
+{% endif %}
 
 {% endblock %}

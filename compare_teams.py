@@ -7,7 +7,7 @@ def compare_teams(teams_list):
         team_results = {'Team': team['Team Name']}
         team_stats = team_data(team)
         if team_stats[0] == 'invalid':
-            return team_stats
+            return team_stats[0], team_stats[1], team['Team Name']
 
         team_games = get_games(team_stats)
         for game in team_games:

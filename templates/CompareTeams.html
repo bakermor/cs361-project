@@ -1,13 +1,25 @@
-{% extends "Base.html" %} {% block title %}Compare Team Page{% endblock %} {%
-block content %}
+{% extends "Error.html" %} {% block title %}Compare Team Page{% endblock %} {%
+block body %}
 
 <script type="text/JavaScript">
+  console.log({{count}})
+  if ({{count}} !== 'null'){
+    var count = {{count}}
+  } else {
+    var count = 2
+  }
   function createNewTeam() {
       var newTeam = document.createElement('div');
       newTeam.innerHTML = '<div> <label for="teamName">Team Name:</label> <select id="teamName" name="teamName"> <option value="Red Rabbits">Red Rabbits</option> <option value="Orange Ocelots">Orange Ocelots</option> <option value="Yellow Yaks">Yellow Yaks</option> <option value="Lime Llamas">Lime Llamas</option> <option value="Green Geckos">Green Geckos</option> <option value="Cyan Coyotes">Cyan Coyotes</option> <option value="Aqua Axolotls">Aqua Axolotls</option> <option value="Blue Bats">Blue Bats</option> <option value="Purple Pandas">Purple Pandas</option> <option value="Pink Parrots">Pink Parrots</option> </select> <label for="p1">Player 1:</label> <input type="text" id="p1" name="p1" /> <label for="p2">Player 2:</label> <input type="text" id="p2" name="p2" /> <label for="p3">Player 3:</label> <input type="text" id="p3" name="p3" /> <label for="p4">Player 4:</label> <input type="text" id="p4" name="p4" /> </div>'
       document.getElementById("teamInput").appendChild(newTeam);
+      count += 1
+        if (count === 4){
+            document.getElementById("new-input").hidden=true
+        }
   }
 </script>
+
+
 
 <form action="/compare-teams" method="POST">
   <div id="teamInput">
@@ -65,10 +77,12 @@ block content %}
     {% endif %} {% endfor %}
   </div>
 
-  <div>
+  {% if count != 4 %}
+  <div id="new-input">
     <input type="button" value="+" onclick="createNewTeam();" />
     <span>Add a team</span>
   </div>
+  {% endif %}
 
   <input type="submit" value="Submit" />
 </form>

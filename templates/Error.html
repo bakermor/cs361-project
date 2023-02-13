@@ -1,0 +1,26 @@
+{% extends "Base.html" %} {%
+block content %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+      {% for message in messages %}
+        <li>{{message}}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% if error %}
+<p class="error">
+{% if errorTeam %}
+<p>Team: {{errorTeam}}; <strong>Invalid Player:</strong> {{ error }}</p>
+{% else %}
+<p><strong>Invalid Player:</strong> {{ error }}</p>
+{% endif %}
+<p>Click info box to be redirected to a page with valid players.</p>
+{% endif %}
+
+{% block body %}{% endblock %}
+</p>
+{% endblock %}
