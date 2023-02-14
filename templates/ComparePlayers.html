@@ -1,7 +1,6 @@
 {% extends "Base.html" %} {% block title %}Compare Players Page{% endblock %} {%
 block content %}
 
-<div style="display: none">
   <script type="text/JavaScript">
     var count = 2
     function createNewInput() {
@@ -14,7 +13,6 @@ block content %}
           }
     }
   </script>
-</div>
 
 <form action="/compare-players" method="POST">
   <div id="playerInput">

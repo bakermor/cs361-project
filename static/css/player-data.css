@@ -1,0 +1,116 @@
+@import "base.css";
+
+
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.buttons button,
+.buttons input {
+  padding: 10px;
+  margin-right: 15px;
+  font-size: medium;
+}
+
+.buttons button {
+  background: #ffcc66;
+  color: #d43429;
+}
+
+.buttons input {
+  font-weight: bold;
+  background: #d43429;
+  color: #fff;
+}
+
+.buttons button:hover,
+.buttons input:hover {
+  background: #fff;
+  color: #d43429;
+}
+
+.profile{
+    margin-top: 20px;
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    margin-bottom: 25px;
+}
+
+.profile img,
+.profile h3{
+    margin-right: 20px;
+}
+
+.profile img{
+    align-self: center;
+}
+
+.profile h3{
+    font-size: xx-large;
+    margin-bottom: 0;
+    padding: 20px;
+    color: #d43429;
+    /* border: 5px solid #ffcc66; */
+    align-self: flex-end;
+    width: 50%;
+}
+
+.results{
+    border: 3px solid black;
+    width: 52%;
+    font-size: large;
+}
+
+.results tr{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #757575
+}
+
+.results .heading{
+    border-bottom: 3px solid black;
+    color:#d43429;
+    background: #ffcc66;
+    font-size: larger;
+}
+
+.results th{
+    text-align: left;
+    background: #ffcc66;
+    
+}
+
+.results th,
+.results td{
+    margin-right: 10px;
+    padding: 10px 20px;
+    text-align: left;
+}
+
+.results .column0{
+    width: 64%;
+}
+
+.results .column1{
+    width: 13%;
+    text-align: right;
+}
+
+.results .column2{
+    width: 20%;
+    text-align: right;
+}
+
+.overall {
+    font-weight: bold;
+    background: #e6e6e6;
+}
+
+.overall td{
+    background: #e6e6e6;
+}

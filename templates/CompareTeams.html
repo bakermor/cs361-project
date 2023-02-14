@@ -1,7 +1,6 @@
 {% extends "Error.html" %} {% block title %}Compare Team Page{% endblock %} {%
 block body %}
 
-<div style="display: none">
   <script type="text/JavaScript">
     if ({{count}} !== 'null'){
       var count = {{count}}
@@ -18,7 +17,6 @@ block body %}
           }
     }
   </script>
-</div>
 
 <form action="/compare-teams" method="POST">
   <div id="teamInput">

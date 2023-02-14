@@ -25,8 +25,12 @@ def player():
     # Process form data
     if request.method == "POST":
         req_player = request.form["pname"]
+        # TODO: send request to microservice
+        if req_player == 'RANDOM':
+            pass
         content = player_data(req_player)
         if content == 'invalid':
+            print('invalid')
             return render_template("PlayerData.html", error=req_player, teamIcons=TEAMS)
         return redirect(url_for("display_player", content=json.dumps(content)))
 
@@ -45,6 +49,7 @@ def display_player(content):
             game = [key, int(content[key][1]), int(content[key][0])]
             data.append(game)
     overall = ["Overall", int(content["Overall"][1]), int(content["Overall"][0])]
+    print(overall)
     return render_template("DisplayPlayerData.html", player=content["Player"][0], games=data,
                            p_id="/images/"+str(content["Player"][1])+".png", overall=overall, teamIcons=TEAMS)
 

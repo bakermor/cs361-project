@@ -1,16 +1,33 @@
-{% extends "Error.html" %} {% block title %}Player Data{% endblock %} {% block body %} 
+{% extends "Error.html" %} {% block title %}Player Data{% endblock %} {% block
+style %}
+<link
+  rel="stylesheet"
+  href="{{url_for('static', filename='css/player-data.css')}}"
+/>
+{% endblock %} {% block body %}
 
-<form action="/player-data" method="POST">
-  <label for="pname">Enter Player Name:</label><br />
-  {% if player %}
-  <input type="text" id="pname" name="pname" value="{{player}}" /><br />
-  {% elif error %}
-  <input type="text" id="pname" name="pname" value="{{error}}" /><br />
-  {% else %}
-  <input type="text" id="pname" name="pname" /><br />
-  {% endif %}
+<script type="text/JavaScript">
+  function randomInput(event) {
+    event.preventDefault();
+    var inputToUpdate = document.getElementById('pname');
+    inputToUpdate.value = 'RANDOM';
+  }
+</script>
 
-  <input type="submit" value="Submit" />
-</form>
+  <form action="/player-data" method="POST">
+    <label for="pname">Enter Player Name:</label><br />
+    {% if player %}
+    <input type="text" id="pname" name="pname" value="{{player}}" /><br />
+    {% elif error %}
+    <input type="text" id="pname" name="pname" value="{{error}}" /><br />
+    {% else %}
+    <input type="text" id="pname" name="pname" /><br />
+    {% endif %}
+
+    <div class="buttons">
+      <button onclick="randomInput(event)">Random</button>
+      <input type="submit" value="Submit" />
+    </div>
+  </form>
 
 {% block display %} {% endblock %} {% endblock %}

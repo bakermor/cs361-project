@@ -1,36 +1,34 @@
 {% extends "PlayerData.html" %} {% block display %}
 
 <br \ />
-<div>
-  <div>
+<div class="wrapper-results">
+  <div class="profile">
     <image
       src="{{url_for('static', filename=p_id)}}"
       style="width: 120px; height: 120px"
     />
     <h3>{{player}}</h3>
   </div>
-  <table>
-    <thead>
-      <tr>
-        <th>Game</th>
-        <th>Place</th>
-        <th>Coins</th>
+  <div class="table-wrapper">
+    <table class="results">
+      <tr class="heading">
+        <th class="column0">Game</th>
+        <th class="column1">Place</th>
+        <th class="column2">Coins</th>
       </tr>
-    </thead>
-    <tbody>
       {% for game in games %}
       <tr>
-        {% for item in game %}
-        <td>{{item}}</td>
+        {% for i in range(game|length) %}
+        <td class="column{{i}}">{{game[i]}}</td>
         {% endfor %}
       </tr>
       {% endfor %}
-      <tr>
-        {% for item in overall %}
-        <td>{{item}}</td>
+      <tr class="overall">
+        {% for i in range(3) %}
+        <td class="column{{i}}">{{overall[i]}}</td>
         {% endfor %}
       </tr>
-    </tbody>
-  </table>
+    </table>
+  </div>
 </div>
 {% endblock %}
