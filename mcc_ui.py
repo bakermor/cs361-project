@@ -8,19 +8,15 @@ app = Flask(__name__)
 TEAMS = ['Red Rabbits', 'Orange Ocelots', 'Yellow Yaks', 'Lime Llamas', 'Green Geckos', 'Cyan Coyotes', 'Aqua Axolotls',
          'Blue Bats', 'Purple Pandas', 'Pink Parrots']
 
-@app.route("/base")
-def base():
-    return render_template("Base.html")
-
 # Home Page
 @app.route("/")
 def home():
-    return render_template("HomePage.html")
+    return render_template("HomePage.html", teamIcons=TEAMS)
 
 # Display Valid Players
 @app.route("/valid")
 def valid_players():
-    return render_template("ValidPlayers.html")
+    return render_template("ValidPlayers.html", teamIcons=TEAMS)
 
 
 # Player Data
@@ -31,12 +27,12 @@ def player():
         req_player = request.form["pname"]
         content = player_data(req_player)
         if content == 'invalid':
-            return render_template("PlayerData.html", error=req_player)
+            return render_template("PlayerData.html", error=req_player, teamIcons=TEAMS)
         return redirect(url_for("display_player", content=json.dumps(content)))
 
     # Load initial webpage
     else:
-        return render_template("PlayerData.html")
+        return render_template("PlayerData.html", teamIcons=TEAMS)
 
 # Display Player Data
 @app.route("/display/<content>")
@@ -49,7 +45,8 @@ def display_player(content):
             game = [key, int(content[key][1]), int(content[key][0])]
             data.append(game)
     overall = ["Overall", int(content["Overall"][1]), int(content["Overall"][0])]
-    return render_template("DisplayPlayerData.html", player=content["Player"][0], games=data, p_id="/images/"+str(content["Player"][1])+".png", overall=overall)
+    return render_template("DisplayPlayerData.html", player=content["Player"][0], games=data,
+                           p_id="/images/"+str(content["Player"][1])+".png", overall=overall, teamIcons=TEAMS)
 
 
 # Compare Players
@@ -61,13 +58,13 @@ def compare_p():
         content = compare_players(req_players)
 
         if content[0] == 'invalid':
-            return render_template("DisplayCompareP.html", p_names=req_players, error=content[1])
+            return render_template("DisplayCompareP.html", p_names=req_players, error=content[1], teamIcons=TEAMS)
 
         return redirect(url_for("display_players", content=json.dumps(content)))
 
     # Load initial webpage
     else:
-        return render_template("ComparePlayers.html", count=2)
+        return render_template("ComparePlayers.html", count=2, teamIcons=TEAMS)
 
 # Display Compare Players
 @app.route("/display-p/<content>", methods=["POST", "GET"])
@@ -97,7 +94,7 @@ def display_players(content):
         game_lst.remove("Overall")
 
         return render_template("DisplayCompareP.html", p_names=p_names, imgs=img_paths, games=game_lst,
-                               num_p=len(p_names), data=data, coins=0)
+                               num_p=len(p_names), data=data, coins=0, teamIcons=TEAMS)
 
 
 # Compare Teams
@@ -121,14 +118,14 @@ def compare_t():
 
         if content[0] == 'invalid':
              return render_template("CompareTeams.html", count=len(req_teams), teamName=teams, p1=p1, p2=p2, p3=p3,
-                                    p4=p4, error=content[1], errorTeam=content[2])
+                                    p4=p4, error=content[1], errorTeam=content[2], teamIcons=TEAMS)
 
         content.append({'Team':'edit', 'data': request.form})
         return redirect(url_for("display_teams", content=json.dumps(content)))
 
     # Load initial webpage
     else:
-        return render_template("CompareTeams.html", count=2)
+        return render_template("CompareTeams.html", count=2, teamIcons=TEAMS)
 
 # Edit Compare Teams
 @app.route("/edit-compare", methods=["POST", "GET"])
@@ -139,7 +136,8 @@ def edit_p():
         p2 = request.form.getlist('p2')
         p3 = request.form.getlist('p3')
         p4 = request.form.getlist('p4')
-        return render_template("CompareTeams.html", count=len(teamName), teamName=teamName, p1=p1, p2=p2, p3=p3, p4=p4)
+        return render_template("CompareTeams.html", count=len(teamName), teamName=teamName, p1=p1, p2=p2, p3=p3, p4=p4,
+                               teamIcons=TEAMS)
 
 # Display Compare Teams
 @app.route("/display-t/<content>", methods=["POST", "GET"])
@@ -179,7 +177,7 @@ def display_teams(content):
         game_lst.remove("Overall")
 
         return render_template("DisplayCompareT.html", t_names=t_names, p_names=p_names, imgs=img_paths, games=game_lst,
-                               num_t=len(t_names), data=data, edit=edit)
+                               num_t=len(t_names), data=data, edit=edit, teamIcons=TEAMS)
 
 
 # Simulate Event
@@ -203,12 +201,12 @@ def event_sim():
         if 'Error' in content.keys():
             content = content['Error']
             return render_template("EditEventSim.html", teamNames=TEAMS, p1=p1, p2=p2, p3=p3, p4=p4, error=content[1],
-                                   errorTeam=content[2], games=game_lst)
+                                   errorTeam=content[2], games=game_lst, teamIcons=TEAMS)
         return redirect(url_for("display_event", content=json.dumps(content)))
 
     # Load initial webpage
     else:
-        return render_template("EventSim.html")
+        return render_template("EventSim.html", teamIcons=TEAMS)
 
 # Display Simulate Event
 @app.route("/display-event/<content>")
@@ -222,7 +220,7 @@ def display_event(content):
         p = content["Teams"][team]
         teams[team] = [p[0][0], p[1][0], p[2][0], p[3][0]]
 
-    return render_template("DisplayEvent.html", games=games, teams=teams, coins=coins, overall=overall)
+    return render_template("DisplayEvent.html", games=games, teams=teams, coins=coins, overall=overall, teamIcons=TEAMS)
 
 if __name__ == "__main__":
     app.run(debug=True)

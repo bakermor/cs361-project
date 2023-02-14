@@ -41,5 +41,11 @@
 
       {% block content %} {% endblock %}
     </div>
+
+    <div class="team-icons">
+    {% for team in teamIcons %}
+        <image src="{{url_for('static', filename='/images/'+team+'.png')}}">
+    {% endfor %}
+    </div>
   </body>
 </html>

@@ -1,31 +1,36 @@
-{% extends "Base.html" %}
-{% block title %}Home Page{% endblock %}
-{% block content %}
+{% extends "Base.html" %} {% block title %}Home Page{% endblock %} {% block
+style %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}" />
+{% endblock %} {% block content %}
 
-<div>
-  <p>
+<div class="buttons">
+  <div class="button-container">
     <form action="/player-data" method="GET">
       <input type="submit" value="See Player" />
       <span>See Individual Player Stats</span>
     </form>
-  </p>
-  <p>
-    <h2>Compare</h2>  
+  </div>
+  <div class="button-container">
     <form action="/compare-players" method="GET">
-      <input type="submit" value="Players" />
+      <input type="submit" value="Compare Players" />
       <span>See Predicted Performance of Players Side-by-Side </span>
     </form>
+  </div>
+  <div class="button-container">
     <form action="/compare-teams" method="GET">
-      <input type="submit" value="Teams" />
+      <input type="submit" value="Compare Teams" />
       <span>See Predicted Performance of Teams Side-by-Side</span>
     </form>
-  </p>
-  <p>
+  </div>
+  <div class="button-container">
     <form action="/event" method="GET">
       <input type="submit" value="Run Event" />
-      <span>Simulate an Event: Choose the Game Order, Enter Players for Each of the 10 Teams (40 players)</span>
+      <span
+        >Simulate an Event: Choose the Game Order, Enter Players for Each of the
+        10 Teams (40 players)</span
+      >
     </form>
-  </p>
+  </div>
 </div>
 
 {% endblock %}

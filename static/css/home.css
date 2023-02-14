@@ -1,0 +1,37 @@
+@import "base.css";
+
+.button {
+  display: flex;
+  justify-content: space-around;
+}
+
+.button-container form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.button-container input,
+.button-container span {
+  padding: 30px 20px;
+  font-size: 1em;
+}
+
+.button-container input {
+  font-weight: bold;
+  width: 20%;
+  color: #d43429;
+  background: #ffcc66;
+  border-color: #ff9966;
+}
+
+.button-container span {
+  width: 70%;
+  background: #fff;
+}
+
+.button-container input:hover {
+  color: #fff;
+  background: #d43429;
+}
