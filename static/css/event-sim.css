@@ -1,0 +1,95 @@
+@import "base.css";
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.buttons button,
+.buttons input {
+  padding: 10px;
+  margin-right: 15px;
+  font-size: medium;
+}
+
+.buttons button {
+  background: #ffcc66;
+  color: #d43429;
+}
+
+.buttons input {
+  font-weight: bold;
+  background: #d43429;
+  color: #fff;
+}
+
+.buttons button:hover,
+.buttons input:hover {
+  background: #fff;
+  color: #d43429;
+}
+
+.game-inputs {
+  display: flex;
+  flex-flow: row wrap;
+  width: 96%;
+}
+
+.game-inputs .label {
+  margin-right: 20px;
+  width: 4%;
+}
+
+.games {
+  display: flex;
+  flex-flow: row wrap;
+  width: 80%;
+}
+
+.games input {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 20%;
+}
+
+.team-inputs {
+  display: flex;
+  flex-flow: row wrap;
+  width: 95%;
+}
+
+.team {
+  margin-right: 25px;
+  margin-top: 25px;
+  flex-basis: 23%;
+  padding: 10px;
+  border: 4px solid black;
+  background: #d43429;
+}
+
+.profile {
+  display: flex;
+  flex-flow: row nowrap;
+  color: #fff;
+  background: #d43429;
+}
+
+.profile img {
+  margin-bottom: 10px;
+  margin-right: 20px;
+  width: 40%;
+  background: #d43429;
+}
+
+.profile h3 {
+  align-self: center;
+  font-size: x-large;
+  background: #d43429;
+}
+
+.team input {
+  width: 100%;
+  font-size: medium;
+  margin-top: 10px;
+}

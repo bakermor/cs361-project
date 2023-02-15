@@ -1,0 +1,104 @@
+@import "base.css";
+
+.team-icons {
+  display: none;
+}
+
+.info {
+  margin-right: 0px;
+}
+
+.wrapper {
+  width: 75%;
+}
+
+.results-wrapper {
+  display: flex;
+  width: 100%;
+  flex-flow: row wrap;
+}
+
+.team-imgs {
+  order: -1;
+  display: flex;
+  flex-flow: row wrap;
+  flex-basis: 93%;
+  width: 70%;
+  justify-content: space-evenly;
+}
+
+.team-imgs img {
+  align-self: center;
+  width: 80px;
+}
+
+.game-results {
+  margin-top: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+.game-data {
+  width: 30%;
+  margin-right: 20px;
+  margin-top: 30px;
+  border: 4px solid black;
+  padding: 3px 10px 10px 10px;
+  background: #3d3b3f;
+}
+
+.game-data h3 {
+  margin-left: 20px;
+  font-size: x-large;
+  color: #fff;
+  background: #3d3b3f;
+}
+
+.results {
+  border: 2px solid black;
+  background: #d43429;
+  margin-top: 25px;
+  font-size: large;
+  padding: 10px;
+}
+
+.results tr {
+  display: flex;
+  width: 100%;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.results .heading {
+  background: #d43429;
+}
+
+.results th,
+.results td {
+  margin-right: 10px;
+  padding: 10px 20px;
+  width: 80px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.results th {
+  text-align: left;
+  margin-bottom: 5px;
+  background: #d43429;
+  color: #fff;
+}
+
+.column0 {
+  width: 20px;
+  text-align: center;
+}
+
+.heading .column0 {
+  text-align: center;
+}
+
+.results .column1 {
+  width: 60%;
+}
