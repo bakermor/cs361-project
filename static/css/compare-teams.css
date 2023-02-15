@@ -1,5 +1,15 @@
 @import "base.css";
 
+.team-input {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.team-wrapper {
+  flex-basis: 15%;
+}
+
 .add-button {
   width: 100%;
   display: flex;
@@ -44,74 +54,69 @@
   color: #d43429;
 }
 
-.results-wrapper h3 {
+#results-wrapper h3 {
   position: absolute;
   font-size: xx-large;
   color: #d43429;
+  top: 15px;
   padding-top: 20px;
   padding-left: 10px;
 }
 
-.profile {
+.image-wrapper {
+    margin-top: 20px;
   display: flex;
-  margin-bottom: 25px;
+  flex-flow: row nowrap;
+  margin-left: 20%;
+}
+
+.team-images {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.team-icon {
+  margin-left: 25px;
+  margin-right: 10px;
+}
+
+.team-icon img {
+  align-self: center;
+  width: 80px;
+}
+
+.player-icons {
+  display: flex;
+  flex-flow: row wrap;
   justify-content: space-between;
+  align-self: center;
+  width: 65px;
+  height: 67px;
+}
+
+.player-icons img {
+  align-self: center;
+  width: 30px;
 }
 
 .results {
+  margin-top: 25px;
   border: 3px solid black;
   font-size: large;
 }
 
-/* two players */
-.p2 .profile {
-  margin-left: 33.5%;
-  margin-right: 49.2%;
+.t2 .results {
+  width: 48.3%;
 }
-.p2 .results {
-  width: 50%;
+.t3 .results {
+  width: 62.3%;
 }
-/* three players */
-.p3 .profile {
-  margin-left: 32%;
-  margin-right: 44%;
-}
-.p3 .results {
-  width: 55%;
-}
-/* four players */
-.p4 .profile {
-  margin-left: 30.3%;
-  margin-right: 40%;
-}
-.p4 .results {
-  width: 60%;
-}
-/* four players */
-.p5 .profile {
-  margin-left: 27.2%;
-  margin-right: 34.5%;
-}
-.p5 .results {
-  width: 65%;
-}
-/* six players */
-.p6 .profile {
-  margin-left: 23%;
-  margin-right: 29.2%;
-}
-.p6 .results {
-  width: 70%;
-}
-
-.profile img {
-  margin-right: 20px;
-  margin-top: 20px;
+.t4 .results {
+  width: 76%;
 }
 
 .results tr {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   width: 100%;
   border-bottom: 1px solid #757575;
@@ -119,8 +124,8 @@
 
 .results .heading {
   border-bottom: 3px solid black;
-  color: #d43429;
-  background: #ffcc66;
+  color: #fff;
+  background: #d43429;
   font-size: large;
 }
 
@@ -130,36 +135,33 @@
 
 .results th {
   text-align: left;
-  background: #ffcc66;
+  background: #d43429;
 }
 
 .results th,
 .results td {
   margin-right: 10px;
   padding: 10px 20px;
-  text-align: center;
   width: 80px;
 }
 
-.p2 .results .column0 {
+.results .column0 {
   text-align: left;
-  width: 60%;
 }
-.p3 .results .column0 {
-  text-align: left;
-  width: 55%;
+
+.t2 .results .column0 {
+  flex-basis: 43.5%;
 }
-.p4 .results .column0 {
-  text-align: left;
-  width: 48%;
+.t3 .results .column0 {
+  flex-basis: 33%;
 }
-.p5 .results .column0 {
-  text-align: left;
-  width: 39%;
+.t4 .results .column0 {
+  flex-basis: 26.8%;
 }
-.p6 .results .column0 {
-  text-align: left;
-  width: 30%;
+
+.results .data {
+  text-align: center;
+  width: 82px;
 }
 
 .results .empty {
@@ -174,4 +176,18 @@
 
 .overall td {
   background: #e6e6e6;
+}
+
+.edit-button {
+  padding: 10px;
+  margin-top: 15px;
+  margin-right: 15px;
+  font-size: medium;
+  background: #ffcc66;
+  color: #d43429;
+}
+
+.edit-button:hover {
+  background: #fff;
+  color: #d43429;
 }

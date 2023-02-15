@@ -3,7 +3,8 @@
   {% if error %}
   <div class="error">
     {% if errorTeam %}
-    <p>Team: {{errorTeam}}; <strong>Invalid Player:</strong> {{ error }}</p>
+    <p>Team: {{errorTeam}} </p>
+    <p><strong>Invalid Player:</strong> {{ error }}</p>
     {% else %}
     <p><strong>Invalid Player:</strong> {{ error }}</p>
     {% endif %}

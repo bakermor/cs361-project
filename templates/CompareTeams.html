@@ -1,29 +1,45 @@
 {% extends "Error.html" %} {% block title %}Compare Team Page{% endblock %} {%
-block body %}
-
-  <script type="text/JavaScript">
-    if ({{count}} !== 'null'){
-      var count = {{count}}
-    } else {
-      var count = 2
-    }
-    function createNewTeam() {
-        var newTeam = document.createElement('div');
-        newTeam.innerHTML = '<div> <label for="teamName">Team Name:</label> <select id="teamName" name="teamName"> <option value="Red Rabbits">Red Rabbits</option> <option value="Orange Ocelots">Orange Ocelots</option> <option value="Yellow Yaks">Yellow Yaks</option> <option value="Lime Llamas">Lime Llamas</option> <option value="Green Geckos">Green Geckos</option> <option value="Cyan Coyotes">Cyan Coyotes</option> <option value="Aqua Axolotls">Aqua Axolotls</option> <option value="Blue Bats">Blue Bats</option> <option value="Purple Pandas">Purple Pandas</option> <option value="Pink Parrots">Pink Parrots</option> </select> <label for="p1">Player 1:</label> <input type="text" id="p1" name="p1" /> <label for="p2">Player 2:</label> <input type="text" id="p2" name="p2" /> <label for="p3">Player 3:</label> <input type="text" id="p3" name="p3" /> <label for="p4">Player 4:</label> <input type="text" id="p4" name="p4" /> </div>'
-        document.getElementById("teamInput").appendChild(newTeam);
-        count += 1
-          if (count === 4){
-            document.getElementById("new-input").style.display = 'none';
-          }
-    }
-  </script>
+block style %}
+<link
+  rel="stylesheet"
+  href="{{url_for('static', filename='css/compare-teams.css')}}"
+/>
+{% endblock %}{% block script %}
+<script type="text/JavaScript">
+  if ({{count}} !== 'null'){
+    var count = {{count}}
+  } else {
+    var count = 2
+  }
+  function createNewTeam() {
+      var newTeam = document.createElement('div');
+      newTeam.classList.add('team-wrapper')
+      newTeam.innerHTML = '<label for="teamName">Team Name:</label> <select id="teamName" name="teamName"> <option value="" disabled selected>Choose Team</option> <option value="Red Rabbits">Red Rabbits</option> <option value="Orange Ocelots">Orange Ocelots</option> <option value="Yellow Yaks">Yellow Yaks</option> <option value="Lime Llamas">Lime Llamas</option> <option value="Green Geckos">Green Geckos</option> <option value="Cyan Coyotes">Cyan Coyotes</option> <option value="Aqua Axolotls">Aqua Axolotls</option> <option value="Blue Bats">Blue Bats</option> <option value="Purple Pandas">Purple Pandas</option> <option value="Pink Parrots">Pink Parrots</option> </select> <label for="p1">Player 1:</label> <input type="text" id="p1" name="p1" /> <label for="p2">Player 2:</label> <input type="text" id="p2" name="p2" /> <label for="p3">Player 3:</label> <input type="text" id="p3" name="p3" /> <label for="p4">Player 4:</label> <input type="text" id="p4" name="p4" />'
+      document.getElementById("teamInput").appendChild(newTeam);
+      count += 1
+        if (count === 4){
+          document.getElementById("new-input").style.display = 'none';
+        }
+  }
+  function randomInput(event) {
+    event.preventDefault();
+    for(var j=1; j<5; j++){
+      var inputToUpdate = document.querySelectorAll(`[id="p${j}"]`);
+      for(var i=0; i < inputToUpdate.length; i++){
+        if (inputToUpdate[i].value === ""){
+          inputToUpdate[i].value = 'RANDOM';
+    }}}
+  }
+</script>
+{% endblock %} {% block body %}
 
 <form action="/compare-teams" method="POST">
-  <div id="teamInput">
+  <div id="teamInput" class="team-input">
     {% for i in range(count) %} {% if teamName == null %}
-    <div>
+    <div class="team-wrapper">
       <label for="teamName">Team Name:</label>
-      <select id="teamName" name="teamName">
+      <select id="teamName" name="teamName" required>
+        <option value="" disabled selected>Choose Team</option>
         <option value="Red Rabbits">Red Rabbits</option>
         <option value="Orange Ocelots">Orange Ocelots</option>
         <option value="Yellow Yaks">Yellow Yaks</option>
@@ -46,10 +62,12 @@ block body %}
       <input type="text" id="p4" name="p4" required />
     </div>
     {% else %}
-    <div>
+    <div class="team-wrapper">
       <label for="teamName">Team Name:</label>
       <select id="teamName" name="teamName" value="{{teamName[i]}}">
-        <option value="{{teamName[i]}}" selected hidden>{{teamName[i]}}</option>
+        <option value="{{teamName[i]}}" selected style="display: none">
+          {{teamName[i]}}
+        </option>
         <option value="Red Rabbits">Red Rabbits</option>
         <option value="Orange Ocelots">Orange Ocelots</option>
         <option value="Yellow Yaks">Yellow Yaks</option>
@@ -73,15 +91,18 @@ block body %}
     </div>
     {% endif %} {% endfor %}
   </div>
-
+  <br />
   {% if count != 4 %}
-  <div id="new-input">
+  <div id="new-input" class="add-button">
     <input type="button" value="+" onclick="createNewTeam();" />
     <span>Add a team</span>
   </div>
   {% endif %}
 
-  <input type="submit" value="Submit" />
+  <div class="buttons">
+    <button onclick="randomInput(event)">Random</button>
+    <input type="submit" value="Submit" />
+  </div>
 </form>
 
 {% endblock %}

@@ -81,6 +81,7 @@ script {
   width: 5.3%;
   top: 0;
   right: 0;
+  background: #3d3b3f;
 }
 
 .team-icons img {
@@ -88,6 +89,7 @@ script {
   margin-left: auto;
   max-width: 100%;
   padding: 3px;
+  background: #3d3b3f;
 }
 
 .info {

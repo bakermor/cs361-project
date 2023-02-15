@@ -122,6 +122,10 @@ def compare_t():
         req_teams = []
         for i in range(len(teams)):
             players = [p1[i], p2[i], p3[i], p4[i]]
+            for j in range(4):
+                if players[j] == "RANDOM":
+                    response = requests.get("http://127.0.0.1:5001/player")
+                    players[j] = response.json()[0]
             if "" not in players:
                 teamDic = {'Team Name': teams[i], 'Players': players}
                 req_teams.append(teamDic)
