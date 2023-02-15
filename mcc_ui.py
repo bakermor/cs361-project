@@ -1,4 +1,5 @@
 from flask import Flask, redirect, url_for, render_template, request
+import requests
 import json
 from compare_players import *
 from run_event import *
@@ -25,9 +26,9 @@ def player():
     # Process form data
     if request.method == "POST":
         req_player = request.form["pname"]
-        # TODO: send request to microservice
         if req_player == 'RANDOM':
-            pass
+            response = requests.get("http://127.0.0.1:5001/player")
+            req_player = response.json()[0]
         content = player_data(req_player)
         if content == 'invalid':
             print('invalid')
