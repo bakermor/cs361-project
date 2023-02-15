@@ -61,10 +61,15 @@ def compare_p():
     # Process form data
     if request.method == "POST":
         req_players = request.form.getlist('pname')
-        content = compare_players(req_players)
+        for i in range(len(req_players)):
+            if req_players[i] == "RANDOM":
+                response = requests.get("http://127.0.0.1:5001/player")
+                req_players[i] = response.json()[0]
 
+        content = compare_players(req_players)
         if content[0] == 'invalid':
-            return render_template("DisplayCompareP.html", p_names=req_players, error=content[1], teamIcons=TEAMS)
+            return render_template("DisplayCompareP.html", p_names=req_players, error=content[1], teamIcons=TEAMS,
+                                   num_p = len(req_players))
 
         return redirect(url_for("display_players", content=json.dumps(content)))
 

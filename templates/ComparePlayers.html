@@ -1,18 +1,32 @@
 {% extends "Base.html" %} {% block title %}Compare Players Page{% endblock %} {%
-block content %}
-
-  <script type="text/JavaScript">
-    var count = 2
-    function createNewInput() {
-          var newInput = document.createElement('div');
-          newInput.innerHTML = '<label for="pname">Enter Player Name:</label><br /><input type="text" id="pname" name="pname" /><br />';
-          document.getElementById("playerInput").appendChild(newInput);
-          count += 1
-          if (count === 6){
-              document.getElementById("new-input").hidden=true
-          }
+block style %}
+<link
+  rel="stylesheet"
+  href="{{url_for('static', filename='css/compare-players.css')}}"
+/>
+{% endblock %} {% block script %}
+<script type="text/JavaScript">
+  var count = 2
+  function createNewInput() {
+        var newInput = document.createElement('div');
+        newInput.innerHTML = '<label for="pname">Enter Player Name:</label><br /><input type="text" id="pname" name="pname" /><br />';
+        document.getElementById("playerInput").appendChild(newInput);
+        count += 1
+        if (count === 6){
+            document.getElementById("new-input").style.display = 'none';
+        }
+  }
+  function randomInput(event) {
+    event.preventDefault();
+    var inputToUpdate = document.querySelectorAll("[id='pname']");
+    for(var i=0; i < inputToUpdate.length; i++){
+      if (inputToUpdate[i].value === ""){
+        inputToUpdate[i].value = 'RANDOM';
+      }
     }
-  </script>
+  }
+</script>
+{% endblock %} {% block content %}
 
 <form action="/compare-players" method="POST">
   <div id="playerInput">
@@ -23,12 +37,14 @@ block content %}
     <input type="text" id="pname" name="pname" /><br />
   </div>
 
-  <div id="new-input">
+  <div id="new-input" class="add-button">
     <input type="button" value="+" onclick="createNewInput();" />
     <span>Add a player</span>
   </div>
-
-  <input type="submit" value="Submit" />
+  <div class="buttons">
+    <button onclick="randomInput(event)">Random</button>
+    <input type="submit" value="Submit" />
+  </div>
 </form>
 
 {% endblock %}

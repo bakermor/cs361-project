@@ -1,9 +1,13 @@
-{% extends "Error.html" %} {% block title %}Compare Players Page{% endblock %} {%
-block body %}
+{% extends "Error.html" %} {% block title %}Compare Players Page{% endblock %}
+{% block style %}
+<link
+  rel="stylesheet"
+  href="{{url_for('static', filename='css/compare-players.css')}}"
+/>
+{% endblock %} {% block script %}
 
-<div style="display: none">
 <script type="text/JavaScript">
-  var count = {{num_p}} 
+  var count = {{num_p}}
 
   function createNewInput() {
         var newInput = document.createElement('div');
@@ -11,68 +15,82 @@ block body %}
         document.getElementById("playerInput").appendChild(newInput);
         count += 1
         if (count === 6){
-            document.getElementById("new-input").hidden=true
+          document.getElementById("new-input").style.display = 'none';
         }
   }
-
+  function randomInput(event) {
+    event.preventDefault();
+    var inputToUpdate = document.querySelectorAll("[id='pname']");
+    for(var i=0; i < inputToUpdate.length; i++){
+      if (inputToUpdate[i].value === ""){
+        inputToUpdate[i].value = 'RANDOM';
+      }
+    }
+  }
 </script>
-</div>
+{% endblock %} {% block body %}
 
 <form action="/compare-players" method="POST">
-  <div id="playerInput"></div>
-  {% for player in p_names %} 
+  <div id="playerInput">
+    {% for player in p_names %}
     <label for="pname">Enter Player Name:</label><br />
-    <input type="text" id="pname" name="pname" value={{player}} /><br />
-  {% endfor %}
+    <input type="text" id="pname" name="pname" value="{{player}}" /><br />
+    {% endfor %}
   </div>
 
-  <div id="new-input">
+  {% if num_p != 6 %}
+  <div id="new-input" class="add-button">
     <input type="button" value="+" onclick="createNewInput();" />
     <span>Add a player</span>
   </div>
+  {% endif %}
 
-  <input type="submit" value="Submit" />
+  <div class="buttons">
+    <button onclick="randomInput(event)">Random</button>
+    <input type="submit" value="Submit" />
+  </div>
 </form>
 
 <br \ />
 
 {% if not error %}
-<div>
-    {% for i in range(num_p) %}
-    <image src="{{url_for('static', filename=imgs[i])}}" title={{p_names[i]}} style="width:80px;height:80px;"/>
-    {% endfor %}
-</div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Game</th>
+<div class="results-wrapper">
+  <h3>Average Coins</h3>
+  <div class="p{{num_p}}">
+    <div class="profile">
       {% for i in range(num_p) %}
-      <th>Average</th>
+      <image
+        src="{{url_for('static', filename=imgs[i])}}"
+        title="{{p_names[i]}}"
+        style="width: 80px; height: 80px"
+      />
       {% endfor %}
-    </tr>
-  </thead>
-  <tbody>
-    {% for g in games %}
-    <tr>
-      <td>{{g}}</td>
-      {% for i in range(num_p) %}
-        {% if data[p_names[i]][g] != null%}
+    </div>
+
+    <table class="results">
+      <tr class="heading">
+        <th class="column0">Game</th>
+        {% for i in range(num_p) %}
+        <th class="nickname"></th>
+        {% endfor %}
+      </tr>
+      {% for g in games %}
+      <tr>
+        <td class="column0">{{g}}</td>
+        {% for i in range(num_p) %} {% if data[p_names[i]][g] != null%}
         <td>{{data[p_names[i]][g][0]}}</td>
         {% else %}
-        <td></td>
-        {% endif %}
+        <td class="empty">-</td>
+        {% endif %} {% endfor %}
+      </tr>
       {% endfor %}
-    </tr>
-    {% endfor %}
-    <tr>
-      <td>Overall</td>
-      {% for i in range(num_p) %}
+      <tr class="overall">
+        <td class="column0">Overall</td>
+        {% for i in range(num_p) %}
         <td>{{data[p_names[i]]["Overall"][0]}}</td>
-      {% endfor %}
-    </tr>
-  </tbody>
-</table>
-{% endif %}
-
-{% endblock %}
+        {% endfor %}
+      </tr>
+    </table>
+  </div>
+</div>
+{% endif %} {% endblock %}

@@ -1,7 +1,5 @@
 @import "base.css";
 
-
-
 .buttons {
   display: flex;
   flex-direction: row;
@@ -54,7 +52,6 @@
     margin-bottom: 0;
     padding: 20px;
     color: #d43429;
-    /* border: 5px solid #ffcc66; */
     align-self: flex-end;
     width: 50%;
 }

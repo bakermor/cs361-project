@@ -1,0 +1,178 @@
+@import "base.css";
+
+.add-button {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 15px;
+}
+
+.add-button span{
+    margin-left: 7px;
+    font-size:smaller;
+    padding-bottom: 2px;
+    align-self: flex-end;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  
+  .buttons button,
+  .buttons input {
+    padding: 10px;
+    margin-right: 15px;
+    font-size: medium;
+  }
+  
+  .buttons button {
+    background: #ffcc66;
+    color: #d43429;
+  }
+  
+  .buttons input {
+    font-weight: bold;
+    background: #d43429;
+    color: #fff;
+  }
+  
+  .buttons button:hover,
+  .buttons input:hover {
+    background: #fff;
+    color: #d43429;
+  }
+
+.results-wrapper h3{
+    position: absolute;
+    font-size: xx-large;
+    color: #d43429;
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+.profile{
+    display:flex;
+    margin-bottom: 25px;
+    justify-content: space-between;
+}
+
+.results{
+    border: 3px solid black;
+    font-size: large;
+}
+
+/* two players */
+.p2 .profile{
+    margin-left: 33.5%;
+    margin-right: 49.2%;
+}
+.p2 .results{
+    width: 50%;
+}
+/* three players */
+.p3 .profile{
+    margin-left: 32%;
+    margin-right: 44%;
+}
+.p3 .results{
+    width: 55%;
+}
+/* four players */
+.p4 .profile{
+    margin-left: 30.3%;
+    margin-right: 40%;
+}
+.p4 .results{
+    width: 60%;
+}
+/* four players */
+.p5 .profile{
+    margin-left: 27.2%;
+    margin-right: 34.5%;
+}
+.p5 .results{
+    width: 65%;
+}
+/* six players */
+.p6 .profile{
+    margin-left: 23%;
+    margin-right: 29.2%;
+}
+.p6 .results{
+    width: 70%;
+}
+
+.profile img{
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.results tr{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid #757575
+}
+
+.results .heading{
+    border-bottom: 3px solid black;
+    color:#d43429;
+    background: #ffcc66;
+    font-size: large;
+}
+
+.heading .nickname{
+    font-size: medium;
+}
+
+.results th{
+    text-align: left;
+    background: #ffcc66;
+    
+}
+
+.results th,
+.results td{
+    margin-right: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    width: 80px;
+}
+
+.p2 .results .column0{
+    text-align: left;
+    width: 60%;
+}
+.p3 .results .column0{
+    text-align: left;
+    width: 55%;
+}
+.p4 .results .column0{
+    text-align: left;
+    width: 48%;
+}
+.p5 .results .column0{
+    text-align: left;
+    width: 39%;
+}
+.p6 .results .column0{
+    text-align: left;
+    width: 30%;
+}
+
+.results .empty{
+    font-weight: bold;
+    color:#d43429;
+}
+
+.overall {
+    font-weight: bold;
+    background: #e6e6e6;
+}
+
+.overall td{
+    background: #e6e6e6;
+}
