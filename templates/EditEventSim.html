@@ -1,36 +1,67 @@
 {% extends "Error.html" %} {% block title %}Simulate Event Page{% endblock %} {%
-block body %}
+block style %}
+<link
+  rel="stylesheet"
+  href="{{url_for('static', filename='css/event-sim.css')}}"
+/>
+{% endblock %}{% block script %}
+<script type="text/JavaScript">
+  function randomInput(event) {
+    event.preventDefault();
+    for(var k=1; k<9; k++){
+      var gameToUpdate = document.getElementById(`game${k}`);
+      if (gameToUpdate.value === ""){
+        gameToUpdate.value = 'RANDOM';
+    }}
+    for(var j=1; j<5; j++){
+      var inputToUpdate = document.querySelectorAll(`[id="p${j}"]`);
+      for(var i=0; i < inputToUpdate.length; i++){
+        if (inputToUpdate[i].value === ""){
+          inputToUpdate[i].value = 'RANDOM';
+    }}}
+  }
+</script>
+{% endblock %}{%block body %}
 
 <form action="#" method="POST">
-  <div>
-    <span>Games:</span>
-    {% for i in range(1,9) %}
-    <input
-      type="text"
-      id="game{{i}}"
-      name="game"
-      value='{{games[i-1]}}'
-      required
-    />
+  <div class="game-inputs">
+    <div class="label">
+      <span>Games:</span>
+    </div>
+    <div class="games">
+      {% for i in range(1,9) %}
+      <input
+        type="text"
+        id="game{{i}}"
+        name="game"
+        value="{{games[i-1]}}"
+        required
+      />
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="team-inputs">
+    {% for i in range(10) %}
+    <div class="team">
+      <div class="profile">
+        <image
+          src="{{url_for('static', filename='/images/'+ teamIcons[i] + '.png')}}"
+        />
+        <h3>{{teamIcons[i]}}</h3>
+      </div>
+      <input type="text" id="p1" name="p1" value="{{p1[i]}}" required />
+      <input type="text" id="p2" name="p2" value="{{p2[i]}}" required />
+      <input type="text" id="p3" name="p3" value="{{p3[i]}}" required />
+      <input type="text" id="p4" name="p4" value="{{p4[i]}}" required />
+    </div>
     {% endfor %}
   </div>
 
-  <div>
-    {% for i in range(10) %}
-    <div>
-      <image
-        src="{{url_for('static', filename='/images/'+ teamNames[i] + '.png')}}"
-        style="width: 60px; height: 60px"
-      />
-      <header>{{teamNames[i]}}</header>
-      <input type="text" id="p1" name="p1" value={{p1[i]}} required />
-      <input type="text" id="p2" name="p2" value={{p2[i]}} required />
-      <input type="text" id="p3" name="p3" value={{p3[i]}} required />
-      <input type="text" id="p4" name="p4" value={{p4[i]}} required />
-    </div>
-    {% endfor %}
-
-    <input type="submit" value="Run Event" />
+  <br />
+  <div class="buttons">
+    <button onclick="randomInput(event)">Random</button>
+    <input type="submit" value="Submit" />
   </div>
 </form>
 

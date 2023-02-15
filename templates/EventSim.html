@@ -1,138 +1,66 @@
 {% extends "Base.html" %} {% block title %}Simulate Event Page{% endblock %} {%
-block content %}
+block style %}
+<link
+  rel="stylesheet"
+  href="{{url_for('static', filename='css/event-sim.css')}}"
+/>
+{% endblock %}{% block script %}
+<script type="text/JavaScript">
+  function randomInput(event) {
+    event.preventDefault();
+    for(var k=1; k<9; k++){
+      var gameToUpdate = document.getElementById(`game${k}`);
+      if (gameToUpdate.value === ""){
+        gameToUpdate.value = 'RANDOM';
+    }}
+    for(var j=1; j<5; j++){
+      var inputToUpdate = document.querySelectorAll(`[id="p${j}"]`);
+      for(var i=0; i < inputToUpdate.length; i++){
+        if (inputToUpdate[i].value === ""){
+          inputToUpdate[i].value = 'RANDOM';
+    }}}
+  }
+</script>
+{% endblock %}{%block content %}
 
 <form action="#" method="POST">
-  <div>
-    <span>Games:</span>
-    {% for i in range(1,9) %}
-    <input
-      type="text"
-      id="game{{i}}"
-      name="game"
-      placeholder="Game {{i}}"
-      required
-    />
+  <div class="game-inputs">
+    <div class="label">
+      <span>Games:</span>
+    </div>
+    <div class="games">
+      {% for i in range(1,9) %}
+      <input
+        type="text"
+        id="game{{i}}"
+        name="game"
+        placeholder="Game {{i}}"
+        required
+      />
+      {% endfor %}
+    </div>
+  </div>
+  <div class="team-inputs">
+    {% for i in range(10) %}
+    <div class="team">
+      <div class="profile">
+        <image
+          src="{{url_for('static', filename='/images/'+ teamIcons[i] + '.png')}}"
+        />
+        <h3>{{teamIcons[i]}}</h3>
+      </div>
+      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
+      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
+      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
+      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
+    </div>
     {% endfor %}
   </div>
-  <div>
-    <div>
-      <image
-        src="{{url_for('static', filename='/images/Red Rabbits.png')}}"
-        style="width: 60px; height: 60px"
-      />
-      <header>Red Rabbits</header>
-      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
-      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
-      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
-      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
-    </div>
-    <div>
-      <image
-        src="{{url_for('static', filename='/images/Orange Ocelots.png')}}"
-        style="width: 60px; height: 60px"
-      />
-      <header>Orange Ocelots</header>
-      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
-      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
-      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
-      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
-    </div>
-    <div>
-      <image
-        src="{{url_for('static', filename='/images/Yellow Yaks.png')}}"
-        style="width: 60px; height: 60px"
-      />
-      <header>Yellow Yaks</header>
-      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
-      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
-      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
-      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
-    </div>
-  </div>
-  <div>
-    <div>
-      <image
-        src="{{url_for('static', filename='/images/Lime Llamas.png')}}"
-        style="width: 60px; height: 60px"
-      />
-      <header>Lime Llamas</header>
-      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
-      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
-      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
-      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
-    </div>
-    <div>
-      <image
-        src="{{url_for('static', filename='/images/Green Geckos.png')}}"
-        style="width: 60px; height: 60px"
-      />
-      <header>Green Geckos</header>
-      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
-      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
-      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
-      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
-    </div>
-    <div>
-      <image
-        src="{{url_for('static', filename='/images/Cyan Coyotes.png')}}"
-        style="width: 60px; height: 60px"
-      />
-      <header>Cyan Coyotes</header>
-      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
-      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
-      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
-      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
-    </div>
-  </div>
-  <div>
-    <div>
-      <image
-        src="{{url_for('static', filename='/images/Aqua Axolotls.png')}}"
-        style="width: 60px; height: 60px"
-      />
-      <header>Aqua Axolotls</header>
-      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
-      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
-      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
-      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
-    </div>
-    <div>
-      <image
-        src="{{url_for('static', filename='/images/Blue Bats.png')}}"
-        style="width: 60px; height: 60px"
-      />
-      <header>Blue Bats</header>
-      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
-      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
-      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
-      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
-    </div>
-    <div>
-      <image
-        src="{{url_for('static', filename='/images/Purple Pandas.png')}}"
-        style="width: 60px; height: 60px"
-      />
-      <header>Purple Pandas</header>
-      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
-      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
-      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
-      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
-    </div>
-  </div>
-  <div>
-    <div>
-      <image
-        src="{{url_for('static', filename='/images/Pink Parrots.png')}}"
-        style="width: 60px; height: 60px"
-      />
-      <header>Pink Parrots</header>
-      <input type="text" id="p1" name="p1" placeholder="Player 1" required />
-      <input type="text" id="p2" name="p2" placeholder="Player 2" required />
-      <input type="text" id="p3" name="p3" placeholder="Player 3" required />
-      <input type="text" id="p4" name="p4" placeholder="Player 4" required />
-    </div>
 
-    <input type="submit" value="Run Event" />
+  <br />
+  <div class="buttons">
+    <button onclick="randomInput(event)">Random</button>
+    <input type="submit" value="Submit" />
   </div>
 </form>
 

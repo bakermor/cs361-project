@@ -106,11 +106,10 @@ script {
   flex-flow: row wrap;
 }
 
-.elements .error{
+.elements .error {
   width: 100%;
   border: 5px solid #d43429;
   padding: 10px;
   margin-right: 60%;
   margin-bottom: 40px;
 }
-

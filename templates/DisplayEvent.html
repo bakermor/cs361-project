@@ -1,60 +1,62 @@
 {% extends "Base.html" %} {% block title %}Display Event Page{% endblock %} {%
-block content %} {% for game in games %}
-<div>
-  <h3>{{game}}</h3>
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th>Team</th>
-        <th>Coins</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for i in range(10) %}
-      <tr>
-        <td>{{i+1}}</td>
-        <td>{{coins[game][i]['Team']}}</td>
-        <td>{{coins[game][i]['Coin']|int}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
-{% endfor %}
+block style %}
+<link
+  rel="stylesheet"
+  href="{{url_for('static', filename='css/display-event.css')}}"
+/>
+{% endblock %}{% block content %}
+<div class="results-wrapper">
+  <div class="game-results">
+    {% for game in games %}
+    <div class="game-data">
+      <h3>{{game}}</h3>
 
-<div>
-    <h3>Overall</h3>
-    <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Team</th>
-            <th>Coins</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for i in range(10) %}
-          <tr>
-            <td>{{i+1}}</td>
-            <td>{{overall[i]['Team']}}</td>
-            <td>{{overall[i]['Coin']|int}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
+      <table class="results">
+        <tr class="heading">
+          <th class="column0">#</th>
+          <th class="column1">Team</th>
+          <th class="column2">Coins</th>
+        </tr>
+        {% for i in range(10) %}
+        <tr>
+          <td class="column0">{{i+1}}</td>
+          <td class="column1">{{coins[game][i]['Team']}}</td>
+          <td class="column2">{{coins[game][i]['Coin']|int}}</td>
+        </tr>
+        {% endfor %}
       </table>
-</div>
+    </div>
+    {% endfor %}
 
-<div>
-  {% for t in teams %}
-  <div>
-    <image
-      src="{{url_for('static', filename='/images/'+ t +'.png')}}"
-      title="{{teams[t]}}"
-      style="width: 80px; height: 80px"
-    />
+    <div class="game-data" class="overall">
+      <h3>Overall</h3>
+      <table class="results">
+        <tr class="heading">
+          <th class="column0">#</th>
+          <th class="column1">Team</th>
+          <th class="column2">Coins</th>
+        </tr>
+        {% for i in range(10) %}
+        <tr>
+          <td class="column0">{{i+1}}</td>
+          <td class="column1">{{overall[i]['Team']}}</td>
+          <td class="column2">{{overall[i]['Coin']|int}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
   </div>
-  {% endfor %}
+
+  <div class="team-imgs">
+    {% for t in teams %}
+    <div>
+      <image
+        src="{{url_for('static', filename='/images/'+ t +'.png')}}"
+        title="{{teams[t][0]}}, {{teams[t][1]}}, {{teams[t][2]}}, {{teams[t][3]}}"
+      />
+    </div>
+    {% endfor %}
+  </div>
 </div>
 
 {% endblock %}
