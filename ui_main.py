@@ -4,10 +4,12 @@ import json
 from run_event import *
 from ui_single_player import single_player
 from ui_multiple_players import multiple_players
+from ui_multiple_teams import multiple_teams
 
 app = Flask(__name__)
 app.register_blueprint(single_player, url_prefix="")
 app.register_blueprint(multiple_players, url_prefix="")
+app.register_blueprint(multiple_teams, url_prefix="")
 
 TEAMS = ['Red Rabbits', 'Orange Ocelots', 'Yellow Yaks', 'Lime Llamas', 'Green Geckos', 'Cyan Coyotes', 'Aqua Axolotls',
          'Blue Bats', 'Purple Pandas', 'Pink Parrots']
@@ -21,93 +23,6 @@ def home():
 @app.route("/valid")
 def valid_players():
     return render_template("ValidPlayers.html", teamIcons=TEAMS)
-
-# Compare Teams
-@app.route("/compare-teams", methods=["POST","GET"])
-def compare_t():
-    # Process form data
-    if request.method == "POST":
-        teams = request.form.getlist('teamName')
-        p1 = request.form.getlist('p1')
-        p2 = request.form.getlist('p2')
-        p3 = request.form.getlist('p3')
-        p4 = request.form.getlist('p4')
-
-        req_teams = []
-        for i in range(len(teams)):
-            players = [p1[i], p2[i], p3[i], p4[i]]
-            for j in range(4):
-                if players[j] == "RANDOM":
-                    response = requests.get("http://127.0.0.1:5001/player")
-                    players[j] = response.json()[0]
-            if "" not in players:
-                teamDic = {'Team Name': teams[i], 'Players': players}
-                req_teams.append(teamDic)
-        content = compare_teams(req_teams)
-
-        if content[0] == 'invalid':
-             return render_template("CompareTeams.html", count=len(req_teams), teamName=teams, p1=p1, p2=p2, p3=p3,
-                                    p4=p4, error=content[1], errorTeam=content[2], teamIcons=TEAMS)
-
-        content.append({'Team':'edit', 'data': request.form})
-        return redirect(url_for("display_teams", content=json.dumps(content)))
-
-    # Load initial webpage
-    else:
-        return render_template("CompareTeams.html", count=2, teamIcons=TEAMS)
-
-# Edit Compare Teams
-@app.route("/edit-compare", methods=["POST", "GET"])
-def edit_p():
-    if request.method == "POST":
-        teamName = request.form.getlist('teamName')
-        p1 = request.form.getlist('p1')
-        p2 = request.form.getlist('p2')
-        p3 = request.form.getlist('p3')
-        p4 = request.form.getlist('p4')
-        return render_template("CompareTeams.html", count=len(teamName), teamName=teamName, p1=p1, p2=p2, p3=p3, p4=p4,
-                               teamIcons=TEAMS)
-
-# Display Compare Teams
-@app.route("/display-t/<content>", methods=["POST", "GET"])
-def display_teams(content):
-    if request.method == "GET":
-        content = json.loads(content)
-        edit = ""
-        for team in content:
-            if team["Team"] == 'edit':
-                edit = team["data"]
-                content.remove(team)
-
-        t_names = []
-        p_names = []
-        img_paths = []
-        game_lst = set()
-        data = {}
-
-        for t in content:
-            t_names.append(t["Team"])
-
-            p_paths = ["/images/" + str(t["Team"]) + ".png"]
-            for player in t["Players"]:
-                p_names.append(player[0])
-                p_paths.append("/images/"+str(player[1])+".png")
-
-            img_paths.append(p_paths)
-            game_lst.update(t.keys())
-
-            t_game = {}
-            for key in t:
-                if key != "Team" and key != "Players":
-                    t_game[key] = (int(t[key][0]), int(t[key][1]))
-            data[t["Team"]] = t_game
-        game_lst.remove("Team")
-        game_lst.remove("Players")
-        game_lst.remove("Overall")
-
-        return render_template("DisplayCompareT.html", t_names=t_names, p_names=p_names, imgs=img_paths, games=game_lst,
-                               num_t=len(t_names), data=data, edit=edit, teamIcons=TEAMS)
-
 
 # Simulate Event
 @app.route("/event", methods=["POST","GET"])
