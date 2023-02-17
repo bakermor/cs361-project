@@ -3,8 +3,10 @@ import requests
 import json
 from compare_players import *
 from run_event import *
+from ui_single_player import single_player
 
 app = Flask(__name__)
+app.register_blueprint(single_player, url_prefix="")
 
 TEAMS = ['Red Rabbits', 'Orange Ocelots', 'Yellow Yaks', 'Lime Llamas', 'Green Geckos', 'Cyan Coyotes', 'Aqua Axolotls',
          'Blue Bats', 'Purple Pandas', 'Pink Parrots']
@@ -18,42 +20,6 @@ def home():
 @app.route("/valid")
 def valid_players():
     return render_template("ValidPlayers.html", teamIcons=TEAMS)
-
-
-# Player Data
-@app.route("/player-data", methods=["POST","GET"])
-def player():
-    # Process form data
-    if request.method == "POST":
-        req_player = request.form["pname"]
-        if req_player == 'RANDOM':
-            response = requests.get("http://127.0.0.1:5001/player")
-            req_player = response.json()[0]
-        content = player_data(req_player)
-        if content == 'invalid':
-            print('invalid')
-            return render_template("PlayerData.html", error=req_player, teamIcons=TEAMS)
-        return redirect(url_for("display_player", content=json.dumps(content)))
-
-    # Load initial webpage
-    else:
-        return render_template("PlayerData.html", teamIcons=TEAMS)
-
-# Display Player Data
-@app.route("/display/<content>")
-def display_player(content):
-    content = json.loads(content)
-
-    data = []
-    for key in content:
-        if key != "Player" and key != "Overall":
-            game = [key, int(content[key][1]), int(content[key][0])]
-            data.append(game)
-    overall = ["Overall", int(content["Overall"][1]), int(content["Overall"][0])]
-    print(overall)
-    return render_template("DisplayPlayerData.html", player=content["Player"][0], games=data,
-                           p_id="/images/"+str(content["Player"][1])+".png", overall=overall, teamIcons=TEAMS)
-
 
 # Compare Players
 @app.route("/compare-players", methods=["POST","GET"])
