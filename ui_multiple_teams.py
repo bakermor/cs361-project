@@ -23,6 +23,7 @@ def compare_t():
         req_teams = get_content(teams, players)
         content = compare_teams(req_teams)
 
+        # Handles Invalid Requests
         if content[0] == 'invalid':
              return render_template("CompareTeams.html", count=len(req_teams), teamName=teams, p1=players[0],
                                     p2=players[1], p3=players[2], p4=players[3], error=content[1],
