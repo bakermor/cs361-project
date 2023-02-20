@@ -58,7 +58,7 @@
 
 .results{
     border: 3px solid black;
-    width: 52%;
+    width: 65%;
     font-size: large;
 }
 
@@ -90,7 +90,7 @@
 }
 
 .results .column0{
-    width: 64%;
+    width: 60%;
 }
 
 .results .column1{
