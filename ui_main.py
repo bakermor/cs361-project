@@ -1,5 +1,4 @@
 from flask import Flask, render_template
-
 from ui_single_player import single_player
 from ui_multiple_players import multiple_players
 from ui_multiple_teams import multiple_teams
