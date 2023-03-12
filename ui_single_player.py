@@ -5,8 +5,8 @@ from player_data import *
 
 single_player = Blueprint("single_player", __name__, static_folder="static", template_folder="templates")
 
-TEAMS = ['Red Rabbits', 'Orange Ocelots', 'Yellow Yaks', 'Lime Llamas', 'Green Geckos', 'Cyan Coyotes', 'Aqua Axolotls',
-         'Blue Bats', 'Purple Pandas', 'Pink Parrots']
+TEAMS = ['Red Rabbits', 'Orange Ocelots', 'Yellow Yaks', 'Lime Llamas', 'Green Geckos',
+         'Cyan Coyotes', 'Aqua Axolotls', 'Blue Bats', 'Purple Pandas', 'Pink Parrots']
 
 
 @single_player.route("/player-data", methods=["POST","GET"])

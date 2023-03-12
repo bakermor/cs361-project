@@ -5,8 +5,8 @@ from run_event import *
 
 event = Blueprint("event", __name__, static_folder="static", template_folder="templates")
 
-TEAMS = ['Red Rabbits', 'Orange Ocelots', 'Yellow Yaks', 'Lime Llamas', 'Green Geckos', 'Cyan Coyotes', 'Aqua Axolotls',
-         'Blue Bats', 'Purple Pandas', 'Pink Parrots']
+TEAMS = ['Red Rabbits', 'Orange Ocelots', 'Yellow Yaks', 'Lime Llamas', 'Green Geckos',
+         'Cyan Coyotes', 'Aqua Axolotls', 'Blue Bats', 'Purple Pandas', 'Pink Parrots']
 
 
 @event.route("/event", methods=["POST","GET"])
@@ -28,8 +28,9 @@ def event_sim():
         # Handles Invalid Requests
         if 'Error' in content.keys():
             content = content['Error']
-            return render_template("EditEventSim.html", p1=players[0], p2=players[1], p3=players[2], p4=players[3],
-                                   error=content[1],errorTeam=content[2], games=game_lst, teamIcons=TEAMS)
+            return render_template("EditEventSim.html", p1=players[0], p2=players[1], p3=players[2],
+                                   p4=players[3], error=content[1], errorTeam=content[2], games=game_lst,
+                                   teamIcons=TEAMS)
 
         return redirect(url_for("event.display_event", content=json.dumps(content)))
 
@@ -65,5 +66,5 @@ def display_event(content):
         p = content["Teams"][team]
         teams[team] = [p[0][0], p[1][0], p[2][0], p[3][0]]
 
-    return render_template("DisplayEvent.html", games=content["Games"], teams=teams, coins=content["Coins"],
-                           overall=content["Overall"], teamIcons=TEAMS)
+    return render_template("DisplayEvent.html", games=content["Games"], teams=teams,
+                           coins=content["Coins"], overall=content["Overall"], teamIcons=TEAMS)

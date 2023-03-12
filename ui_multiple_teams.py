@@ -5,8 +5,8 @@ from compare_teams import *
 
 multiple_teams = Blueprint("multiple_teams", __name__, static_folder="static", template_folder="templates")
 
-TEAMS = ['Red Rabbits', 'Orange Ocelots', 'Yellow Yaks', 'Lime Llamas', 'Green Geckos', 'Cyan Coyotes', 'Aqua Axolotls',
-         'Blue Bats', 'Purple Pandas', 'Pink Parrots']
+TEAMS = ['Red Rabbits', 'Orange Ocelots', 'Yellow Yaks', 'Lime Llamas', 'Green Geckos',
+         'Cyan Coyotes', 'Aqua Axolotls', 'Blue Bats', 'Purple Pandas', 'Pink Parrots']
 
 
 @multiple_teams.route("/compare-teams", methods=["POST","GET"])
@@ -83,8 +83,8 @@ def display_teams(content):
     game_lst.remove("Players")
     game_lst.remove("Overall")
 
-    return render_template("DisplayCompareT.html", t_names=t_names, p_names=p_names, imgs=img_paths, games=game_lst,
-                            num_t=len(t_names), data=data, teamIcons=TEAMS)
+    return render_template("DisplayCompareT.html", t_names=t_names, p_names=p_names, imgs=img_paths,
+                           games=game_lst, num_t=len(t_names), data=data, teamIcons=TEAMS)
 
 def team_games(team):
     t_game = {}

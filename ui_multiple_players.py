@@ -5,8 +5,8 @@ from compare_players import *
 
 multiple_players = Blueprint("multiple_players", __name__, static_folder="static", template_folder="templates")
 
-TEAMS = ['Red Rabbits', 'Orange Ocelots', 'Yellow Yaks', 'Lime Llamas', 'Green Geckos', 'Cyan Coyotes', 'Aqua Axolotls',
-         'Blue Bats', 'Purple Pandas', 'Pink Parrots']
+TEAMS = ['Red Rabbits', 'Orange Ocelots', 'Yellow Yaks', 'Lime Llamas', 'Green Geckos',
+         'Cyan Coyotes', 'Aqua Axolotls', 'Blue Bats', 'Purple Pandas', 'Pink Parrots']
 
 
 @multiple_players.route("/compare-players", methods=["POST","GET"])
@@ -26,8 +26,8 @@ def compare_p():
         content = compare_players(req_players)
         # Handles Invalid Requests
         if content[0] == 'invalid':
-            return render_template("DisplayCompareP.html", p_names=req_players, error=content[1], teamIcons=TEAMS,
-                                   num_p = len(req_players))
+            return render_template("DisplayCompareP.html", p_names=req_players, error=content[1],
+                                   teamIcons=TEAMS, num_p = len(req_players))
 
         return redirect(url_for("multiple_players.display_players", content=json.dumps(content)))
 

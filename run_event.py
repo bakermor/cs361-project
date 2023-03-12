@@ -58,7 +58,8 @@ def main():
     team10 = {'Team Name': 'Pink Parrots', 'Players': ['Ranboo', 'CaptainPuffy', 'HBomb94', 'KaraCorvus']}
 
     teams = [team1, team2, team3, team4, team5, team6, team7, team8, team9, team10]
-    games = ["Grid Runners", "Parkour Tag", "Hole in the Wall", "Battle Box", "TGTTOSAWAF", "Ace Race", "Survival Games", "Sands of Time"]
+    games = ["Grid Runners", "Parkour Tag", "Hole in the Wall", "Battle Box", "TGTTOSAWAF", "Ace Race",
+             "Survival Games", "Sands of Time"]
 
     data = (run_event(teams, games))
     print(data)

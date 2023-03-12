@@ -10,8 +10,8 @@ app.register_blueprint(multiple_players, url_prefix="")
 app.register_blueprint(multiple_teams, url_prefix="")
 app.register_blueprint(event, url_prefix="")
 
-TEAMS = ['Red Rabbits', 'Orange Ocelots', 'Yellow Yaks', 'Lime Llamas', 'Green Geckos', 'Cyan Coyotes', 'Aqua Axolotls',
-         'Blue Bats', 'Purple Pandas', 'Pink Parrots']
+TEAMS = ['Red Rabbits', 'Orange Ocelots', 'Yellow Yaks', 'Lime Llamas', 'Green Geckos', 'Cyan Coyotes',
+         'Aqua Axolotls', 'Blue Bats', 'Purple Pandas', 'Pink Parrots']
 
 # Home Page
 @app.route("/")

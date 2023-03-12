@@ -75,4 +75,5 @@ def sort_results(team_dict):
 
 
 if __name__ == '__main__':
-    print(compare_teams([{'Team Name': 'Red Rabbits', 'Players': ["Sapnap", "Dream", "GeorgeNotFound", "BadBoyHalo"]}, {'Team Name': 'Orange Ocelots', 'Players': ["TommyInnit", "Tubbo", "Ranboo", "WilburSoot"]}]))
+    print(compare_teams([{'Team Name': 'Red Rabbits', 'Players': ["Sapnap", "Dream", "GeorgeNotFound", "BadBoyHalo"]},
+                         {'Team Name': 'Orange Ocelots', 'Players': ["TommyInnit", "Tubbo", "Ranboo", "WilburSoot"]}]))
